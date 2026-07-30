@@ -60,13 +60,15 @@ jobs:
           fi
           ./gradlew $TASKS --no-daemon
 
+      - name: Drop javadoc jars from release assets
+        if: vars.PUB_GITHUB_RELEASES == 'true'
+        run: find build/libs -name '*-javadoc.jar' -delete
+
       - name: Publish to GitHub Releases
         if: vars.PUB_GITHUB_RELEASES == 'true'
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            build/libs/**/*.jar
-            !build/libs/**/*-javadoc.jar
+          files: build/libs/**/*.jar
           generate_release_notes: true
           make_latest: true
 
