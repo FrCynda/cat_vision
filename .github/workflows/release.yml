@@ -50,15 +50,7 @@ jobs:
           gradle-version: wrapper
 
       - name: Build MC ${{ needs.validate.outputs.mc_version }}
-        run: |
-          ESCAPED=$(echo "$MC_VERSION" | sed 's/\./\\./g')
-          LOADERS=$(grep -oP "match\(\"${ESCAPED}\",\s*\K[^)]*" settings.gradle.kts | tr -d '"' | tr ',' '\n' | xargs)
-          TASKS=$(echo "$LOADERS" | tr ' ' '\n' | sed "s|.*|:${MC_VERSION}-&:buildAndCollect|" | tr '\n' ' ')
-          if [ -z "$TASKS" ]; then
-            echo "::error::No loaders found for MC version '${MC_VERSION}'"
-            exit 1
-          fi
-          ./gradlew $TASKS --no-daemon
+        run: ./gradlew buildAndCollect${MC_VERSION} --no-daemon
 
       - name: Drop javadoc jars from release assets
         if: vars.PUB_GITHUB_RELEASES == 'true'
