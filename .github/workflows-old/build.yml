@@ -1,0 +1,6 @@
+name: build
+on: [ pull_request ]
+
+jobs:
+  build:
+    uses: ./.github/workflows/build_reusable.yml
