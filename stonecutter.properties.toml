@@ -1,0 +1,72 @@
+loomx.loom_version="1.16-SNAPSHOT"
+
+
+mod.id = "cat_vision"
+mod.name = "CatVision"
+mod.group = "net.marios271"
+mod.version = "3.0.0"
+mod.channel_tag = ""
+mod.description = "A minecraft mod which gives you Night Vision, even if you aren't a server operator. Inspired by CatEyes by Tee6! :)"
+mod.authors = ["MarioS271"]
+mod.contributors = []
+mod.inception_year = "2026"
+mod.license.name = "GPL-3.0-only"
+mod.license.url = "https://www.gnu.org/licenses/gpl-3.0.en.html"
+mod.license.dist = "repo"
+mod.sources_url = "https://github.com/MarioS271/cat_vision"
+mod.homepage_url = "https://modrinth.com/mod/catvision"
+mod.issues_url = "https://github.com/MarioS271/cat_vision/issues"
+mod.discord_url = ""
+mod.environment = "client"
+[[mod.pom.developers]]
+id = "marios271"
+name = "MarioS271"
+url = "https://github.com/MarioS271"
+
+[fabric]
+deps.fabric-loader = "0.19.2"
+
+[fabric."1.16.5"]
+deps.minecraft = "1.16.5"
+deps.fabric-api = "0.42.0+1.16"
+deps.modmenu = "1.16.23"
+deps.cloth-config = "4.17.101"
+
+#[fabric."1.21.1"]
+#deps.minecraft = "1.21.1"
+#deps.fabric-api = "0.116.7+1.21.1"
+#deps.modmenu = "15.0.0"
+#
+#[fabric."1.21.7"]
+#deps.minecraft = "1.21.7"
+#deps.fabric-api = "0.128.1+1.21.7"
+#deps.modmenu = "15.0.0"
+#publish.additionalVersions = ["1.21.6"]
+#
+#[fabric."26.1.2"]
+#deps.minecraft = "26.1.2"
+#deps.fabric-api = "0.146.1+26.1.2"
+#deps.modmenu = "18.0.0-alpha.8"
+#publish.additionalVersions = ["26.1.1", "26.1"]
+
+#[forge]
+#
+#[forge."1.19.2"]
+#deps.minecraft = "1.19.2"
+#deps.forge = "43.5.2"
+#
+#[neoforge]
+#
+#[neoforge."1.21.1"]
+#deps.minecraft = "1.21.1"
+#deps.neoforge = "21.1.213"
+#
+#[neoforge."1.21.7"]
+#deps.minecraft = "1.21.7"
+#deps.neoforge = "21.7.1-beta"
+#publish.additionalVersions = ["1.21.6"]
+#
+#[neoforge."26.1.2"]
+#deps.minecraft = "26.1.2"
+#deps.neoforge = "26.1.2.29-beta"
+#publish.additionalVersions = ["26.1.1", "26.1"]
