@@ -3,6 +3,7 @@
 plugins {
 	alias(libs.plugins.stonecutter)
 	alias(libs.plugins.loom.back.compat).apply(false)
+	alias(libs.plugins.architectury.loom).apply(false)
 	alias(libs.plugins.neoforged.moddev).apply(false)
 	alias(libs.plugins.jsonlang.postprocess).apply(false)
 	alias(libs.plugins.mod.publish.plugin).apply(false)

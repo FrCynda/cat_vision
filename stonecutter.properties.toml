@@ -49,12 +49,13 @@ deps.cloth-config = "4.17.101"
 #deps.modmenu = "18.0.0-alpha.8"
 #publish.additionalVersions = ["26.1.1", "26.1"]
 
-#[forge]
-#
-#[forge."1.19.2"]
-#deps.minecraft = "1.19.2"
-#deps.forge = "43.5.2"
-#
+[forge]
+
+[forge."1.16.5"]
+deps.minecraft = "1.16.5"
+deps.forge = "36.2.34"
+deps.cloth-config = "4.17.101"
+
 #[neoforge]
 #
 #[neoforge."1.21.1"]

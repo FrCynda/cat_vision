@@ -47,7 +47,7 @@ sealed class Loader(val id: String) {
 					}
 				},
 				description = ctx.description,
-				icon = "assets/icon.png",
+				icon = "icon.png",
 				license = ctx.licenseName,
 				environment = when (ctx.environment) {
 					"client" -> "client"
@@ -113,7 +113,7 @@ sealed class Loader(val id: String) {
 						version = ctx.baseVersion,
 						displayURL = ctx.homepageUrl,
 						modUrl = ctx.homepageUrl,
-						logoFile = "assets/icon.png",
+						logoFile = "icon.png",
 						authors = ctx.authors.joinToString(", "),
 						credits = "${ctx.authors.joinToString(", ")} Contributors: ${ctx.contributors.joinToString(", ")}",
 						description = ctx.description
@@ -143,7 +143,9 @@ sealed class Loader(val id: String) {
 		fun of(id: String): Loader = when (id) {
 			"fabric" -> Fabric
 			"neoforge" -> NeoForge
-			"forge" -> Forge
+			// "forge-legacy" is the Architectury-Loom-based buildscript for pre-1.17 Forge
+			// (build.forge-legacy.gradle.kts); it is functionally the same Forge loader.
+			"forge", "forge-legacy" -> Forge
 			else -> error("Unknown loader: '$id'")
 		}
 	}

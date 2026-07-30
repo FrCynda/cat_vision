@@ -14,13 +14,13 @@ import org.apache.logging.log4j.Logger;
 
 //? fabric {
 import net.marios271.cat_vision.platform.fabric.FabricPlatform;
-
-import java.io.File;
 //?} neoforge {
 /*import net.marios271.cat_vision.platform.neoforge.NeoforgePlatform;
  *///?} forge {
 /*import net.marios271.cat_vision.platform.forge.ForgePlatform;
  *///?}
+
+import java.io.File;
 
 @SuppressWarnings("LoggingSimilarMessage")
 public class CatVision {

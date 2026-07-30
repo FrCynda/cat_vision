@@ -1,5 +1,7 @@
 package net.marios271.cat_vision.platform.fabric;
 
+//? fabric {
+
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import net.marios271.cat_vision.CatVision;
@@ -11,3 +13,4 @@ public class FabricModMenuIntegration implements ModMenuApi {
         return parent -> ConfigScreen.create(parent, CatVision.CONFIG);
     }
 }
+//?}
