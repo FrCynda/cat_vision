@@ -59,9 +59,6 @@ stonecutter {
 		match("1.20.2", "fabric")
 		match("1.20.3", "fabric")
 		match("1.20.4", "fabric", "neoforge")
-		// No NeoForge 1.20.5: every 20.5.x is a beta published WITHOUT Gradle Module Metadata
-		// (.module), so moddev can't resolve its userdev/moddev-bundle variant. MC 1.20.5 was
-		// superseded by 1.20.6 within a week; the 1.20.6 node covers that era instead.
 		match("1.20.5", "fabric")
 		match("1.20.6", "fabric", "neoforge")
 
