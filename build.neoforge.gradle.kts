@@ -36,23 +36,26 @@ neoForge {
 		minecraftVersion = mc
 	}
 
+	// Register the mod BEFORE runs and wire it into each run's loadedMods explicitly. Without
+	// this, moddev's dev run ships no -Dfml.modFolders entry for us, so FML never scans our
+	// classes/resources and only minecraft + neoforge show up in the mod list.
+	val mainMod = mods.create(prop("mod.id")) {
+		sourceSet(sourceSets["main"])
+	}
+
 	runs {
 		register("client") {
 			client()
 			gameDirectory = file("run/")
 			ideName = "NeoForge Client (${stonecutter.current.version})"
 			programArgument("--username=Dev")
+			loadedMods.add(mainMod)
 		}
 		register("server") {
 			server()
 			gameDirectory = file("run/")
 			ideName = "NeoForge Server (${stonecutter.current.version})"
-		}
-	}
-
-	mods {
-		register(prop("mod.id")) {
-			sourceSet(sourceSets["main"])
+			loadedMods.add(mainMod)
 		}
 	}
 	sourceSets["main"].resources.srcDir("${rootDir}/versions/datagen/${sc.current.version.split("-")[0]}/src/main/generated")
@@ -61,11 +64,13 @@ neoForge {
 repositories {
 	mavenCentral()
 	strictMaven("https://api.modrinth.com/maven", "maven.modrinth") { name = "Modrinth" }
+	strictMaven("https://maven.shedaniel.me/", "me.shedaniel", "me.shedaniel.cloth") { name = "Shedaniel" }
 }
 
 dependencies {
 	// implementation(libs.moulberry.mixinconstraints)
 	// jarJar(libs.moulberry.mixinconstraints)
+	implementation("me.shedaniel.cloth:cloth-config-neoforge:${prop("deps.cloth-config")}")
 }
 
 tasks.named("createMinecraftArtifacts") {

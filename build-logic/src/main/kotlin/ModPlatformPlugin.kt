@@ -163,7 +163,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 		val manifestOutputDir = layout.buildDirectory.dir("generated/modManifest")
 		val generateTask = tasks.register<GenerateModManifestTask>("generateModManifest") {
 			content.set(ctx.loader.generateManifest(ctx))
-			outputFile.set(layout.buildDirectory.file("generated/modManifest/${ctx.loader.modManifestPath}"))
+			outputFile.set(layout.buildDirectory.file("generated/modManifest/${ctx.loader.modManifestPath(ctx)}"))
 		}
 
 		the<JavaPluginExtension>().sourceSets.named("main") { resources.srcDir(manifestOutputDir) }
@@ -176,7 +176,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 			filesMatching("*.mixins.json") {
 				expand("java" to "JAVA_${ctx.javaVersion.majorVersion}")
 			}
-			exclude(ctx.loader.excludedResources)
+			exclude(ctx.loader.excludedResources(ctx))
 		}
 	}
 

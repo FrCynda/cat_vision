@@ -13,8 +13,8 @@ private val JSON = Json { prettyPrint = true; encodeDefaults = true; explicitNul
 private val TOML = Toml { }
 
 sealed class Loader(val id: String) {
-	abstract val modManifestPath: String
-	abstract val excludedResources: List<String>
+	abstract fun modManifestPath(ctx: Context): String
+	abstract fun excludedResources(ctx: Context): List<String>
 
 	open val isFabricLike: Boolean = false
 
@@ -22,8 +22,8 @@ sealed class Loader(val id: String) {
 
 	object Fabric : Loader("fabric") {
 		override val isFabricLike = true
-		override val modManifestPath = "fabric.mod.json"
-		override val excludedResources = listOf(
+		override fun modManifestPath(ctx: Context) = "fabric.mod.json"
+		override fun excludedResources(ctx: Context) = listOf(
 			"META-INF/mods.toml", "META-INF/neoforge.mods.toml", "aw/*.cfg", ".cache", "pack.mcmeta"
 		)
 
@@ -78,7 +78,7 @@ sealed class Loader(val id: String) {
 	}
 
 	sealed class ForgeLike(id: String) : Loader(id) {
-		override val excludedResources = listOf(
+		override fun excludedResources(ctx: Context): List<String> = listOf(
 			"fabric.mod.json", "aw/*.accesswidener", ".cache"
 		)
 
@@ -120,8 +120,24 @@ sealed class Loader(val id: String) {
 					)
 				),
 				dependencies = mapOf(ctx.modId to forgeDeps),
-				mixins = listOf(ForgeMixin("${ctx.modId}.mixins.json")),
-				accessTransformers = listOf(ForgeAccessTransformer("aw/${ctx.stonecutter.current.version}.cfg"))
+				// Only declare the mixin config / access transformer when the file actually
+				// ships in the jar. NeoForge (validateAccessTransformers = true) hard-fails to
+				// load a mod whose declared aw/<version>.cfg is missing, and a mixin config
+				// pointing at a non-existent json errors too. Mirrors the Fabric accessWidener
+				// guard above.
+				// Shared resources live in the root project's src/main/resources (the version
+				// subprojects under versions/<node> have no src dir of their own), so resolve
+				// against rootProject, not ctx.project.
+				mixins = listOfNotNull(
+					ForgeMixin("${ctx.modId}.mixins.json").takeIf {
+						ctx.project.rootProject.file("src/main/resources/${ctx.modId}.mixins.json").exists()
+					}
+				),
+				accessTransformers = listOfNotNull(
+					ForgeAccessTransformer("aw/${ctx.stonecutter.current.version}.cfg").takeIf {
+						ctx.project.rootProject.file("src/main/resources/aw/${ctx.stonecutter.current.version}.cfg").exists()
+					}
+				)
 			)
 
 			return TOML.encodeToString(manifest)
@@ -129,13 +145,22 @@ sealed class Loader(val id: String) {
 	}
 
 	object NeoForge : ForgeLike("neoforge") {
-		override val modManifestPath = "META-INF/neoforge.mods.toml"
-		override val excludedResources = (super.excludedResources + "META-INF/mods.toml") + "pack.mcmeta"
+		// NeoForge renamed the manifest META-INF/mods.toml -> META-INF/neoforge.mods.toml in
+		// 20.5 (MC 1.20.5). On 20.4 and earlier the loader ONLY reads META-INF/mods.toml, so
+		// shipping neoforge.mods.toml there makes NeoForge silently treat the jar as a non-mod
+		// (no error, absent from the mod list). Pick the path per game version.
+		private fun usesNeoforgeToml(ctx: Context) = ctx.stonecutter.eval(ctx.currentMcVersion, ">=1.20.5")
+		override fun modManifestPath(ctx: Context) =
+			if (usesNeoforgeToml(ctx)) "META-INF/neoforge.mods.toml" else "META-INF/mods.toml"
+		override fun excludedResources(ctx: Context) =
+			super.excludedResources(ctx) +
+				(if (usesNeoforgeToml(ctx)) "META-INF/mods.toml" else "META-INF/neoforge.mods.toml") +
+				"pack.mcmeta"
 	}
 
 	object Forge : ForgeLike("forge") {
-		override val modManifestPath = "META-INF/mods.toml"
-		override val excludedResources = super.excludedResources + "META-INF/neoforge.mods.toml"
+		override fun modManifestPath(ctx: Context) = "META-INF/mods.toml"
+		override fun excludedResources(ctx: Context) = super.excludedResources(ctx) + "META-INF/neoforge.mods.toml"
 		val mixinConfigAttribute = "MixinConfigs"
 	}
 
