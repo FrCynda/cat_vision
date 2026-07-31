@@ -40,6 +40,12 @@ platform {
 		required("fabricloader") {
 			fabricLikeVersionRange = ">=${prop("deps.fabric-loader")}"
 		}
+		// Fabric mod id is "cloth-config2" for the 4.x/5.x cloth used here; newer
+		// cloth (1.20.1+) renamed it to "cloth-config".
+		required("cloth-config2") {
+			slug("cloth-config")
+			fabricLikeVersionRange = ">=${prop("deps.cloth-config")}"
+		}
 		optional("modmenu") {}
 	}
 }
@@ -92,5 +98,5 @@ dependencies {
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
 	modImplementation("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
 
-	modImplementation(include("me.shedaniel.cloth:cloth-config-fabric:${prop("deps.cloth-config")}")!!)
+	modImplementation("me.shedaniel.cloth:cloth-config-fabric:${prop("deps.cloth-config")}")
 }

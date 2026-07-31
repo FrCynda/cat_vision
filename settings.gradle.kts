@@ -41,15 +41,12 @@ stonecutter {
 		fun match(version: String, vararg loaders: String) =
 			loaders.forEach { version("$version-$it", version).buildscript = "build.$it.gradle.kts" }
 
-//		match("26.1.2", "fabric", "neoforge")
-//		match("1.21.7", "fabric", "neoforge")
-//		match("1.21.1", "fabric", "neoforge")
-//		match("1.19.2", "fabric", "forge")
-		match("1.16.5", "fabric")
 		// Forge 1.16.5 predates official Mojang mappings, so moddev/NFRT (build.forge.gradle.kts)
 		// cannot build it. Route only this node to Architectury Loom instead.
 		version("1.16.5-forge", "1.16.5").buildscript = "build.forge-legacy.gradle.kts"
+		match("1.16.5", "fabric")
+		match("1.17.1", "fabric", "forge")  // Forge + cloth-config crashes (but only in dev); love it!
 
-		vcsVersion = "1.16.5-fabric"
+		vcsVersion = "1.17.1-fabric"
 	}
 }

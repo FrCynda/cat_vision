@@ -16,7 +16,11 @@ import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
 import org.gradle.internal.extensions.stdlib.toDefaultLowerCase
+import org.gradle.api.JavaVersion
+import org.gradle.api.attributes.java.TargetJvmVersion
+import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.jvm.tasks.Jar
+import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.*
 import org.gradle.language.jvm.tasks.ProcessResources
 import org.gradle.plugins.ide.idea.model.IdeaModel
@@ -131,11 +135,27 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 	}
 
 	private fun Project.configureJava(ctx: Context) {
+		val targetMajor = ctx.javaVersion.majorVersion.toInt()
+		// Compile on >=17 regardless of target: Stonecutter/loomx/moddev need it, and the
+		// dev-only fletching-table dependency ships Java 17 bytecode that javac must be able
+		// to read. We still emit the *real* game JRE's bytecode (Java 8 for 1.16.x, 16 for
+		// 1.17.x, ...) via --release so the produced jar loads in the actual client.
+		val toolchainMajor = maxOf(17, targetMajor)
 		extensions.configure<JavaPluginExtension>("java") {
 			withSourcesJar()
 			withJavadocJar()
-			sourceCompatibility = ctx.javaVersion
-			targetCompatibility = ctx.javaVersion
+			toolchain.languageVersion.set(JavaLanguageVersion.of(toolchainMajor))
+		}
+		tasks.withType<JavaCompile>().configureEach { options.release.set(targetMajor) }
+		// When emitting bytecode below 17, keep the compile/runtime classpaths advertising
+		// JVM 17 so fletching-table (17+) still resolves. This attribute only drives Gradle
+		// variant selection, not the shipped jar — the real JRE comes from the game.
+		if (targetMajor < 17) {
+			listOf("compileClasspath", "runtimeClasspath").forEach { cfg ->
+				configurations.named(cfg).configure {
+					attributes.attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 17)
+				}
+			}
 		}
 	}
 

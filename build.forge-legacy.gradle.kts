@@ -33,6 +33,16 @@ platform {
 		required("forge") {
 			forgeLikeVersionRange.set("[1,)")
 		}
+		// Required: the config screen needs cloth. This gates loading entirely — a cloth-less
+		// client won't start. NB: cloth-config-forge 4.x (1.16.5) registers modId
+		// "cloth-config" (hyphen); the 5.x build used by the moddev 1.17.1 node registers
+		// "cloth_config" (underscore). Getting this wrong reports "missing dependency" in
+		// BOTH dev and prod even with cloth installed (Loom remaps cloth, so dev otherwise works).
+		required("cloth-config") {
+			slug("cloth-config")
+			forgeLikeVersionRange = "[${prop("deps.cloth-config")},)"
+			environment = "client"
+		}
 	}
 }
 
@@ -59,7 +69,7 @@ dependencies {
 
 	annotationProcessor("org.spongepowered:mixin:${libs.versions.mixin.get()}:processor")
 
-	modImplementation(include("me.shedaniel.cloth:cloth-config-forge:${prop("deps.cloth-config")}")!!)
+	modImplementation("me.shedaniel.cloth:cloth-config-forge:${prop("deps.cloth-config")}")
 }
 
 sourceSets {
