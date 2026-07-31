@@ -45,8 +45,11 @@ stonecutter {
 		// cannot build it. Route only this node to Architectury Loom instead.
 		version("1.16.5-forge", "1.16.5").buildscript = "build.forge-legacy.gradle.kts"
 		match("1.16.5", "fabric")
-		match("1.17.1", "fabric", "forge")  // Forge + cloth-config crashes (but only in dev); love it!
+		match("1.17.1", "fabric", "forge")
+		match("1.18", "fabric", "forge")
+		match("1.18.1", "fabric", "forge")
+		match("1.18.2", "fabric", "forge")
 
-		vcsVersion = "1.17.1-fabric"
+		vcsVersion = "1.18.2-fabric"
 	}
 }

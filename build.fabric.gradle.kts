@@ -80,6 +80,7 @@ repositories {
 configurations.all {
 	resolutionStrategy {
 		force("net.fabricmc:fabric-loader:${prop("deps.fabric-loader")}")
+		force("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
 	}
 }
 

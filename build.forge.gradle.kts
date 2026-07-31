@@ -48,11 +48,13 @@ legacyForge {
 			gameDirectory = file("run/")
 			ideName = "Forge Client (${sc.current.version})"
 			programArgument("--username=Dev")
+			jvmArguments.add("--add-opens=java.base/java.lang.invoke=cpw.mods.securejarhandler")
 		}
 		register("server") {
 			server()
 			gameDirectory = file("run/")
 			ideName = "Forge Server (${sc.current.version})"
+			jvmArguments.add("--add-opens=java.base/java.lang.invoke=cpw.mods.securejarhandler")
 		}
 	}
 

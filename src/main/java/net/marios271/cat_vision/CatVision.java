@@ -5,12 +5,12 @@ import net.marios271.cat_vision.platform.Platform;
 
 import net.minecraft.resources.ResourceLocation;
 //? >=1.18 {
-/*import org.slf4j.Logger;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
- *///?} else {
-import org.apache.logging.log4j.LogManager;
+ //?} else {
+/*import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-//?}
+*///?}
 
 //? fabric {
 import net.marios271.cat_vision.platform.fabric.FabricPlatform;
@@ -29,10 +29,10 @@ public class CatVision {
 	public static final String MOD_VERSION = /*$ mod_version*/ "3.0.0";
 	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "CatVision";
 	//? >=1.18 {
-	/*public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	 *///?} else {
-	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-	//?}
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	 //?} else {
+	/*public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+	*///?}
 
 	private static final Platform PLATFORM = createPlatformInstance();
 

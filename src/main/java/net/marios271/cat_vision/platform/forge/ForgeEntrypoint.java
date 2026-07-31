@@ -23,9 +23,12 @@ import net.minecraftforge.fml.loading.FMLPaths;
 //? < 1.17.1 {
 /^import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-^///?} >= 1.17.1 {
-import net.minecraftforge.fmlclient.ConfigGuiHandler;
+^///?} 1.17.1 {
+/^import net.minecraftforge.fmlclient.ConfigGuiHandler;
 import net.minecraftforge.fmlclient.registry.ClientRegistry;
+^///?} >= 1.18 {
+import net.minecraftforge.client.ClientRegistry;
+import net.minecraftforge.client.ConfigGuiHandler;
 //?}
 
 @Mod(CatVision.MOD_ID)
@@ -34,13 +37,18 @@ public class ForgeEntrypoint {
 	public ForgeEntrypoint() {
 		CatVision.onInitializeClient(FMLPaths.CONFIGDIR.get().toFile());
 
-
 		//? < 1.17.1 {
 		/^ModLoadingContext.get().registerExtensionPoint(
 				ExtensionPoint.CONFIGGUIFACTORY,
 				() -> (mc, parent) -> ConfigScreen.create(parent, CatVision.CONFIG)
 		);
-		^///?} >= 1.17.1 {
+		^///?} 1.17.1 {
+		/^ModLoadingContext.get().registerExtensionPoint(
+				ConfigGuiHandler.ConfigGuiFactory.class,
+				() -> new ConfigGuiHandler.ConfigGuiFactory(
+						(mc, parent) -> ConfigScreen.create(parent, CatVision.CONFIG))
+		);
+		^///?} >= 1.18 {
 		ModLoadingContext.get().registerExtensionPoint(
 				ConfigGuiHandler.ConfigGuiFactory.class,
 				() -> new ConfigGuiHandler.ConfigGuiFactory(
