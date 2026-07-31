@@ -61,17 +61,17 @@ public class CatVision {
 	}
 
 	private static ResourceLocation id(String path) {
-		//? > 1.19.4 {
+		//? > 1.20 {
 		/*return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
-		*///?} <= 1.19.4 {
+		*///?} <= 1.20 {
 		return new ResourceLocation(MOD_ID, path);
 		//?}
 	}
 
 	private static ResourceLocation id(String namespace, String path) {
-		//? > 1.19.4 {
+		//? > 1.20 {
 		/*return ResourceLocation.fromNamespaceAndPath(namespace, path);
-		*///?} <= 1.19.4 {
+		*///?} <= 1.20 {
 		return new ResourceLocation(namespace, path);
 		//?}
 	}
