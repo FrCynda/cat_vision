@@ -99,63 +99,69 @@ dependencies {
 // run cloth through AutoRenamingTool with moddev's own intermediate->named mapping and put the
 // remapped jar on the run classpath. No effect on the shipped jar (cloth stays external).
 // ---------------------------------------------------------------------------------------------
-configurations.create("artTool")
-configurations.create("clothSrg")
-dependencies {
-	"artTool"("net.neoforged:AutoRenamingTool:2.0.17:all")
-	"clothSrg"("me.shedaniel.cloth:cloth-config-forge:${prop("deps.cloth-config")}") { isTransitive = false }
-}
-
-val moddevArtifacts = layout.buildDirectory.dir("moddev/artifacts")
-val mergedMc = moddevArtifacts.map { it.file("forge-${prop("deps.minecraft")}-${prop("deps.forge")}-merged.jar") }
-
-// ART needs a library in the SAME namespace as the jar it remaps. cloth is SRG-named, but moddev
-// only exposes the *named* (official) Minecraft jar. Pass 1 reobfs that named jar back to SRG so
-// it can resolve cloth's SRG references in pass 2. (This SRG jar is used only as a mapping-time
-// library; it is never shipped or run.)
-val remapMcToSrg = tasks.register<JavaExec>("remapMcToSrgForDevRemap") {
-	dependsOn("createMinecraftArtifacts")
-	classpath = configurations["artTool"]
-	mainClass.set("net.neoforged.art.Main")
-	inputs.file(mergedMc)
-	inputs.file(moddevArtifacts.map { it.file("namedToIntermediate.tsrg") })
-	val out = layout.buildDirectory.file("remappedDeps/minecraft-srg.jar")
-	outputs.file(out)
-	doFirst {
-		args(
-			"--input", mergedMc.get().asFile.absolutePath,
-			"--output", out.get().asFile.absolutePath,
-			"--map", moddevArtifacts.get().file("namedToIntermediate.tsrg").asFile.absolutePath,
-			"--lib", mergedMc.get().asFile.absolutePath,
-		)
+// The cloth dev remap is only needed when actually launching a run (runClient/runActiveClient/...).
+// Gate the whole thing on a run being requested so a plain `build`/CI never touches it — otherwise
+// it lands on runtimeClasspath, runs during the build, and needs run-only artifacts that don't exist.
+if (gradle.startParameter.taskNames.any { it.substringAfterLast(':').startsWith("run") }) {
+	configurations.create("artTool")
+	configurations.create("clothSrg")
+	dependencies {
+		"artTool"("net.neoforged:AutoRenamingTool:2.0.17:all")
+		"clothSrg"("me.shedaniel.cloth:cloth-config-forge:${prop("deps.cloth-config")}") { isTransitive = false }
 	}
-}
 
-// Pass 2: remap cloth SRG -> official using the SRG Minecraft jar as the resolution library, so
-// cloth's config screen resolves against the official-mapped moddev dev runtime.
-val remapClothForDevRun = tasks.register<JavaExec>("remapClothForDevRun") {
-	dependsOn(remapMcToSrg)
-	classpath = configurations["artTool"]
-	mainClass.set("net.neoforged.art.Main")
-	val clothCfg = configurations["clothSrg"]
-	val srgMc = remapMcToSrg.map { it.outputs.files.singleFile }
-	inputs.files(clothCfg, srgMc)
-	inputs.file(moddevArtifacts.map { it.file("intermediateToNamed.srg") })
-	val out = layout.buildDirectory.file("remappedDeps/cloth-config-official.jar")
-	outputs.file(out)
-	doFirst {
-		args(
-			"--input", clothCfg.singleFile.absolutePath,
-			"--output", out.get().asFile.absolutePath,
-			"--map", moddevArtifacts.get().file("intermediateToNamed.srg").asFile.absolutePath,
-			"--lib", srgMc.get().absolutePath,
-		)
+	val moddevArtifacts = layout.buildDirectory.dir("moddev/artifacts")
+	// Use the compile jar (createMinecraftArtifacts output) — always present — NOT the -merged jar,
+	// which is a run-prep artifact that doesn't exist on a clean build.
+	val namedMc = moddevArtifacts.map { it.file("forge-${prop("deps.minecraft")}-${prop("deps.forge")}.jar") }
+
+	// ART needs a library in the SAME namespace as the jar it remaps. cloth is SRG-named, but moddev
+	// only exposes the *named* (official) Minecraft jar. Pass 1 reobfs that named jar back to SRG so
+	// it can resolve cloth's SRG references in pass 2. (SRG jar is a mapping-time lib only; never run.)
+	val remapMcToSrg = tasks.register<JavaExec>("remapMcToSrgForDevRemap") {
+		dependsOn("createMinecraftArtifacts")
+		classpath = configurations["artTool"]
+		mainClass.set("net.neoforged.art.Main")
+		inputs.file(namedMc)
+		inputs.file(moddevArtifacts.map { it.file("namedToIntermediate.tsrg") })
+		val out = layout.buildDirectory.file("remappedDeps/minecraft-srg.jar")
+		outputs.file(out)
+		doFirst {
+			args(
+				"--input", namedMc.get().asFile.absolutePath,
+				"--output", out.get().asFile.absolutePath,
+				"--map", moddevArtifacts.get().file("namedToIntermediate.tsrg").asFile.absolutePath,
+				"--lib", namedMc.get().asFile.absolutePath,
+			)
+		}
 	}
-}
 
-dependencies {
-	// Dev/run classpath gets the remapped cloth (not published, not bundled).
-	runtimeOnly(files(remapClothForDevRun))
+	// Pass 2: remap cloth SRG -> official using the SRG Minecraft jar as the resolution library, so
+	// cloth's config screen resolves against the official-mapped moddev dev runtime.
+	val remapClothForDevRun = tasks.register<JavaExec>("remapClothForDevRun") {
+		dependsOn(remapMcToSrg)
+		classpath = configurations["artTool"]
+		mainClass.set("net.neoforged.art.Main")
+		val clothCfg = configurations["clothSrg"]
+		val srgMc = remapMcToSrg.map { it.outputs.files.singleFile }
+		inputs.files(clothCfg, srgMc)
+		inputs.file(moddevArtifacts.map { it.file("intermediateToNamed.srg") })
+		val out = layout.buildDirectory.file("remappedDeps/cloth-config-official.jar")
+		outputs.file(out)
+		doFirst {
+			args(
+				"--input", clothCfg.singleFile.absolutePath,
+				"--output", out.get().asFile.absolutePath,
+				"--map", moddevArtifacts.get().file("intermediateToNamed.srg").asFile.absolutePath,
+				"--lib", srgMc.get().absolutePath,
+			)
+		}
+	}
+
+	dependencies {
+		// Dev/run classpath gets the remapped cloth (not published, not bundled).
+		runtimeOnly(files(remapClothForDevRun))
+	}
 }
 
 sourceSets {
