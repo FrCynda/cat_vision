@@ -28,7 +28,7 @@ public class CatVision {
 	public static final String MOD_ID = /*$ mod_id*/ "cat_vision";
 	public static final String MOD_VERSION = /*$ mod_version*/ "3.0.0";
 	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "CatVision";
-	//? >=1.18 {
+	//? >= 1.18 {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	 //?} else {
 	/*public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
@@ -61,17 +61,17 @@ public class CatVision {
 	}
 
 	private static ResourceLocation id(String path) {
-		//? > 1.19.2 {
+		//? > 1.19.3 {
 		/*return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
-		 *///?} <= 1.19.2 {
+		*///?} <= 1.19.3 {
 		return new ResourceLocation(MOD_ID, path);
 		//?}
 	}
 
 	private static ResourceLocation id(String namespace, String path) {
-		//? > 1.19.2 {
+		//? > 1.19.3 {
 		/*return ResourceLocation.fromNamespaceAndPath(namespace, path);
-		 *///?} <= 1.19.2 {
+		*///?} <= 1.19.3 {
 		return new ResourceLocation(namespace, path);
 		//?}
 	}
