@@ -130,6 +130,60 @@ deps.fabric-api = "0.100.8+1.20.6"
 deps.modmenu = "10.0.0"
 deps.cloth-config = "14.0.139"
 
+[fabric."1.21"]
+deps.minecraft = "1.21"
+deps.fabric-api = "0.102.0+1.21"
+deps.modmenu = "11.0.4"
+deps.cloth-config = "15.0.140"
+
+[fabric."1.21.1"]
+deps.minecraft = "1.21.1"
+deps.fabric-api = "0.116.15+1.21.1"
+deps.modmenu = "11.0.4"
+deps.cloth-config = "15.0.140"
+
+[fabric."1.21.2"]
+deps.minecraft = "1.21.2"
+deps.fabric-api = "0.106.1+1.21.2"
+deps.modmenu = "12.0.1"
+deps.cloth-config = "16.0.143"
+
+[fabric."1.21.3"]
+deps.minecraft = "1.21.3"
+deps.fabric-api = "0.114.1+1.21.3"
+deps.modmenu = "12.0.1"
+deps.cloth-config = "16.0.143"
+
+[fabric."1.21.4"]
+deps.minecraft = "1.21.4"
+deps.fabric-api = "0.119.4+1.21.4"
+deps.modmenu = "13.0.4"
+deps.cloth-config = "17.0.144"
+
+[fabric."1.21.5"]
+deps.minecraft = "1.21.5"
+deps.fabric-api = "0.128.2+1.21.5"
+deps.modmenu = "14.0.2"
+deps.cloth-config = "18.0.145"
+
+[fabric."1.21.6"]
+deps.minecraft = "1.21.6"
+deps.fabric-api = "0.128.2+1.21.6"
+deps.modmenu = "15.0.2"
+deps.cloth-config = "19.0.147"
+
+[fabric."1.21.7"]
+deps.minecraft = "1.21.7"
+deps.fabric-api = "0.129.0+1.21.7"
+deps.modmenu = "15.0.2"
+deps.cloth-config = "19.0.147"
+
+[fabric."1.21.8"]
+deps.minecraft = "1.21.8"
+deps.fabric-api = "0.136.1+1.21.8"
+deps.modmenu = "15.0.2"
+deps.cloth-config = "19.0.147"
+
 
 #### FORGE ####
 [forge]
@@ -203,10 +257,52 @@ deps.minecraft = "1.20.4"
 deps.neoforge = "20.4.251"
 deps.cloth-config = "13.0.138"
 
-# No [neoforge."1.20.5"]: all NeoForge 20.5.x are betas without Gradle Module Metadata,
-# so moddev can't resolve them (see settings.gradle.kts). 1.20.6 covers that era.
-
 [neoforge."1.20.6"]
 deps.minecraft = "1.20.6"
 deps.neoforge = "20.6.139"
 deps.cloth-config = "14.0.139"
+
+[neoforge."1.21"]
+deps.minecraft = "1.21"
+deps.neoforge = "21.0.167"
+deps.cloth-config = "15.0.140"
+
+[neoforge."1.21.1"]
+deps.minecraft = "1.21.1"
+deps.neoforge = "21.1.247"
+deps.cloth-config = "15.0.140"
+
+[neoforge."1.21.2"]
+deps.minecraft = "1.21.2"
+deps.neoforge = "21.2.1-beta"
+deps.cloth-config = "16.0.143"
+
+[neoforge."1.21.3"]
+deps.minecraft = "1.21.3"
+deps.neoforge = "21.3.97"
+deps.cloth-config = "16.0.143"
+
+[neoforge."1.21.4"]
+deps.minecraft = "1.21.4"
+deps.neoforge = "21.4.157"
+deps.cloth-config = "17.0.144"
+
+[neoforge."1.21.5"]
+deps.minecraft = "1.21.5"
+deps.neoforge = "21.5.98"
+deps.cloth-config = "18.0.145"
+
+[neoforge."1.21.6"]
+deps.minecraft = "1.21.6"
+deps.neoforge = "21.6.20-beta"
+deps.cloth-config = "19.0.147"
+
+[neoforge."1.21.7"]
+deps.minecraft = "1.21.7"
+deps.neoforge = "21.7.25-beta"
+deps.cloth-config = "19.0.147"
+
+[neoforge."1.21.8"]
+deps.minecraft = "1.21.8"
+deps.neoforge = "21.8.54"
+deps.cloth-config = "19.0.147"
