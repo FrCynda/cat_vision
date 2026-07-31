@@ -6,7 +6,11 @@ import net.marios271.cat_vision.config.ConfigData;
 import net.marios271.cat_vision.config.ConfigScreen;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.TranslatableComponent;
+//? < 1.19 {
+/*import net.minecraft.network.chat.TranslatableComponent;
+*///?} >= 1.19 {
+import net.minecraft.network.chat.Component;
+//?}
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import org.lwjgl.glfw.GLFW;
@@ -39,11 +43,25 @@ public class KeyInputHandler {
             if (!config.has_nv) {
                 config.has_nv = true;
                 client.player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, Integer.MAX_VALUE));
-                client.player.displayClientMessage(new TranslatableComponent("message.cat_vision.activated"), true);
+                client.player.displayClientMessage(
+					//? < 1.19 {
+					/*new TranslatableComponent("message.cat_vision.activated"),
+					*///?} >= 1.19 {
+					Component.translatable("message.cat_vision.activated"),
+					//?}
+					true
+				);
             } else {
                 config.has_nv = false;
                 client.player.removeEffect(MobEffects.NIGHT_VISION);
-                client.player.displayClientMessage(new TranslatableComponent("message.cat_vision.deactivated"), true);
+                client.player.displayClientMessage(
+					//? < 1.19 {
+					/*new TranslatableComponent("message.cat_vision.deactivated"),
+					*///?} >= 1.19 {
+					Component.translatable("message.cat_vision.deactivated"),
+					//?}
+					true
+				);
             }
         }
 		else if (openConfigKey.consumeClick()) {
