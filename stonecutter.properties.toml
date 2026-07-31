@@ -118,6 +118,18 @@ deps.fabric-api = "0.97.3+1.20.4"
 deps.modmenu = "9.2.0"
 deps.cloth-config = "13.0.138"
 
+[fabric."1.20.5"]
+deps.minecraft = "1.20.5"
+deps.fabric-api = "0.97.8+1.20.5"
+deps.modmenu = "10.0.0"
+deps.cloth-config = "14.0.139"
+
+[fabric."1.20.6"]
+deps.minecraft = "1.20.6"
+deps.fabric-api = "0.100.8+1.20.6"
+deps.modmenu = "10.0.0"
+deps.cloth-config = "14.0.139"
+
 
 #### FORGE ####
 [forge]
@@ -190,3 +202,11 @@ deps.cloth-config = "11.1.136"
 deps.minecraft = "1.20.4"
 deps.neoforge = "20.4.251"
 deps.cloth-config = "13.0.138"
+
+# No [neoforge."1.20.5"]: all NeoForge 20.5.x are betas without Gradle Module Metadata,
+# so moddev can't resolve them (see settings.gradle.kts). 1.20.6 covers that era.
+
+[neoforge."1.20.6"]
+deps.minecraft = "1.20.6"
+deps.neoforge = "20.6.139"
+deps.cloth-config = "14.0.139"
