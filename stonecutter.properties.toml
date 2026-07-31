@@ -64,6 +64,12 @@ deps.fabric-api = "0.58.0+1.19"
 deps.modmenu = "4.0.4"
 deps.cloth-config = "8.3.134"
 
+[fabric."1.19.1"]
+deps.minecraft = "1.19.1"
+deps.fabric-api = "0.58.5+1.19.1"
+deps.modmenu = "4.0.5"
+deps.cloth-config = "8.3.134"
+
 
 #### FORGE ####
 [forge]
@@ -96,6 +102,11 @@ deps.cloth-config = "6.5.102"
 [forge."1.19"]
 deps.minecraft = "1.19"
 deps.forge = "41.1.0"
+deps.cloth-config = "8.3.134"
+
+[forge."1.19.1"]
+deps.minecraft = "1.19.1"
+deps.forge = "42.0.9"
 deps.cloth-config = "8.3.134"
 
 
