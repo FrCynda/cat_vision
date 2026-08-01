@@ -8,7 +8,7 @@ And the best part: you don't need any permission, just use it anywhere!
 (And don't tell anyone, but you can even suppress effects like Blindness or Nausea!)
 
 This is a rewrite of CatVision 2.0, now known as CatVision Architectury, in order to expand compatibility to as many versions as possible, starting at 1.16.5.
-The new mod supports Fabric (all versions), Forge (up to 1.21.1) and NeoForge (starting at 1.20.5).
+The new mod supports Fabric (all versions), Forge (up to 1.20.1) and NeoForge (starting at 1.20.4).
 To view the old mod, visit [Modrinth](https://modrinth.com/mod/catvision-architectury) or [Curseforge](https://curseforge.com/minecraft/mc-mods/catvision-architectury).
 
 > **DISCLAIMER: I do not endorse anyone to use this mod in order to gain an advantage against others, especially in competitive settings. Please follow the rules of the server, realm or similar you are playing on! I am not responsible for any consequences of this mod being misused.**
