@@ -4,7 +4,11 @@ package net.marios271.cat_vision.platform.fabric;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+//? < 26.1 {
+/*import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+*///?} >= 26.1 {
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+//?}
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.marios271.cat_vision.CatVision;
@@ -23,8 +27,13 @@ public class FabricClientEntrypoint implements ClientModInitializer {
 	public void onInitializeClient() {
 		CatVision.onInitializeClient(FabricLoader.getInstance().getConfigDir().toFile());
 
-		KeyBindingHelper.registerKeyBinding(KeyInputHandler.toggleNightVisionKey);
+		//? < 26.1 {
+		/*KeyBindingHelper.registerKeyBinding(KeyInputHandler.toggleNightVisionKey);
 		KeyBindingHelper.registerKeyBinding(KeyInputHandler.openConfigKey);
+		*///?} >= 26.1 {
+		KeyMappingHelper.registerKeyMapping(KeyInputHandler.toggleNightVisionKey);
+		KeyMappingHelper.registerKeyMapping(KeyInputHandler.openConfigKey);
+		//?}
 
 		ClientTickEvents.END_CLIENT_TICK.register(EndTickListener::onEndTick);
 		ClientTickEvents.END_CLIENT_TICK.register(KeyInputHandler::onKeyTick);

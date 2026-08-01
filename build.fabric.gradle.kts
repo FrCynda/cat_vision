@@ -26,22 +26,23 @@ platform {
 		required("minecraft") {
 			fabricLikeVersionRange = prop("deps.minecraft")
 		}
-		//? if <= 1.16.5 {
-		required("fabric") {
-			slug("fabric-api")
-			fabricLikeVersionRange = ">=${prop("deps.fabric-api")}"
-		}
-		//?} else {
-		/*required("fabric-api") {
-			slug("fabric-api")
-			fabricLikeVersionRange = ">=${prop("deps.fabric-api")}"
-		}
-		 *///?}
 		required("fabricloader") {
 			fabricLikeVersionRange = ">=${prop("deps.fabric-loader")}"
 		}
-		// Fabric mod id is "cloth-config2" for the 4.x/5.x cloth used here; newer
-		// cloth (1.20.1+) renamed it to "cloth-config".
+
+		if (sc.current.parsed < "26.1") {
+			required("fabric") {
+				slug("fabric-api")
+				fabricLikeVersionRange = ">=${prop("deps.fabric-api")}"
+			}
+		}
+		else {
+			required("fabric-api") {
+				slug("fabric-api")
+				fabricLikeVersionRange = ">=${prop("deps.fabric-api")}"
+			}
+		}
+
 		required("cloth-config2") {
 			slug("cloth-config")
 			fabricLikeVersionRange = ">=${prop("deps.cloth-config")}"

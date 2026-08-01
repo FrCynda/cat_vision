@@ -33,8 +33,8 @@ public class KeyInputHandler {
             //? >= 1.21.9 {
             CAT_VISION_KEY_CATEGORY
             //?} else {
-            /*CAT_VISION_CATEGORY*/
-            //?}
+            /*CAT_VISION_CATEGORY
+            *///?}
     );
 	public static KeyMapping openConfigKey = new KeyMapping(
 			KEY_OPEN_CONFIG,
@@ -43,8 +43,8 @@ public class KeyInputHandler {
 			//? >= 1.21.9 {
 			CAT_VISION_KEY_CATEGORY
 			//?} else {
-			/*CAT_VISION_CATEGORY*/
-			//?}
+			/*CAT_VISION_CATEGORY
+			*///?}
 	);
 
     public static void onKeyTick(Minecraft client) {
@@ -57,25 +57,39 @@ public class KeyInputHandler {
             if (!config.has_nv) {
                 config.has_nv = true;
                 client.player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, Integer.MAX_VALUE));
-                client.player.displayClientMessage(
-					//? < 1.19 {
-					/*new TranslatableComponent("message.cat_vision.activated"),
-					*///?} >= 1.19 {
-					Component.translatable("message.cat_vision.activated"),
-					//?}
+				//? < 1.19 {
+                /*client.player.displayClientMessage(
+					new TranslatableComponent("message.cat_vision.activated"),
 					true
 				);
+				*///?} >= 1.19 && < 26.1 {
+				/*client.player.displayClientMessage(
+					Component.translatable("message.cat_vision.activated"),
+					true
+				);
+				*///?} >= 26.1 {
+				client.player.sendOverlayMessage(
+					Component.translatable("message.cat_vision.activated")
+				);
+				//?}
             } else {
                 config.has_nv = false;
                 client.player.removeEffect(MobEffects.NIGHT_VISION);
-                client.player.displayClientMessage(
-					//? < 1.19 {
-					/*new TranslatableComponent("message.cat_vision.deactivated"),
-					*///?} >= 1.19 {
-					Component.translatable("message.cat_vision.deactivated"),
-					//?}
+				//? < 1.19 {
+                /*client.player.displayClientMessage(
+					new TranslatableComponent("message.cat_vision.deactivated"),
 					true
 				);
+				*///?} >= 1.19 && < 26.1 {
+				/*client.player.displayClientMessage(
+					Component.translatable("message.cat_vision.deactivated"),
+					true
+				);
+				*///?} >= 26.1 {
+				client.player.sendOverlayMessage(
+					Component.translatable("message.cat_vision.deactivated")
+				);
+				//?}
             }
         }
 		else if (openConfigKey.consumeClick()) {

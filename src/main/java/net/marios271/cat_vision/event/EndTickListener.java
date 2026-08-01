@@ -30,7 +30,10 @@ public class EndTickListener {
 			client.player.removeEffect(MobEffects.NAUSEA);
 		//?}
 
+
+		//? >= 1.19 {
 		if (client.player.hasEffect(MobEffects.DARKNESS) && config.darkness_immunity)
 			client.player.removeEffect(MobEffects.DARKNESS);
+		//?}
     }
 }

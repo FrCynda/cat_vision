@@ -202,6 +202,30 @@ deps.fabric-api = "0.141.6+1.21.11"
 deps.modmenu = "17.0.0"
 deps.cloth-config = "21.11.153"
 
+[fabric."26.1"]
+deps.minecraft = "26.1"
+deps.fabric-api = "0.145.4+26.1.2"
+deps.modmenu = "18.0.0"
+deps.cloth-config = "26.1.154"
+
+[fabric."26.1.1"]
+deps.minecraft = "26.1.1"
+deps.fabric-api = "0.145.4+26.1.2"
+deps.modmenu = "18.0.0"
+deps.cloth-config = "26.1.154"
+
+[fabric."26.1.2"]
+deps.minecraft = "26.1.2"
+deps.fabric-api = "0.145.4+26.1.2"
+deps.modmenu = "18.0.0"
+deps.cloth-config = "26.1.154"
+
+[fabric."26.2"]
+deps.minecraft = "26.2"
+deps.fabric-api = "0.155.2+26.2"
+deps.modmenu = "20.0.1"
+deps.cloth-config = "26.2.155"
+
 
 #### FORGE ####
 [forge]
@@ -339,3 +363,23 @@ deps.cloth-config = "20.0.149"
 deps.minecraft = "1.21.11"
 deps.neoforge = "21.11.45"
 deps.cloth-config = "21.11.153"
+
+[neoforge."26.1"]
+deps.minecraft = "26.1"
+deps.neoforge = "26.1.0.19-beta"
+deps.cloth-config = "26.1.154"
+
+[neoforge."26.1.1"]
+deps.minecraft = "26.1.1"
+deps.neoforge = "26.1.1.15-beta"
+deps.cloth-config = "26.1.154"
+
+[neoforge."26.1.2"]
+deps.minecraft = "26.1"
+deps.neoforge = "26.1.2.93"
+deps.cloth-config = "26.1.154"
+
+[neoforge."26.2"]
+deps.minecraft = "26.2"
+deps.neoforge = "26.2.0.41-beta"
+deps.cloth-config = "26.2.155"

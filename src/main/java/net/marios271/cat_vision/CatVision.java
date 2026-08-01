@@ -3,7 +3,7 @@ package net.marios271.cat_vision;
 import net.marios271.cat_vision.config.ConfigData;
 import net.marios271.cat_vision.platform.Platform;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 //? >=1.18 {
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,19 +60,19 @@ public class CatVision {
 		 *///?}
 	}
 
-	private static ResourceLocation id(String path) {
+	private static Identifier id(String path) {
 		//? >= 1.21 {
-		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+		return Identifier.fromNamespaceAndPath(MOD_ID, path);
 		//?} else {
-		/*return new ResourceLocation(MOD_ID, path);
+		/*return new Identifier(MOD_ID, path);
 		*///?}
 	}
 
-	private static ResourceLocation id(String namespace, String path) {
+	private static Identifier id(String namespace, String path) {
 		//? >= 1.21 {
-		return ResourceLocation.fromNamespaceAndPath(namespace, path);
+		return Identifier.fromNamespaceAndPath(namespace, path);
 		//?} else {
-		/*return new ResourceLocation(namespace, path);
+		/*return new Identifier(namespace, path);
 		*///?}
 	}
 }
