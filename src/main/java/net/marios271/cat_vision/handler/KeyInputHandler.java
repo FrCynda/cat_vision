@@ -16,21 +16,35 @@ import net.minecraft.world.effect.MobEffects;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyInputHandler {
-    public static final String CAT_VISION_CATEGORY = "key.categories.cat_vision";
     public static final String KEY_TOGGLE_CLIENT_NV = "key.cat_vision.toggle_client_night_vision";
     public static final String KEY_OPEN_CONFIG = "key.cat_vision.open_config_screen";
+
+    //? >= 1.21.9 {
+    public static final KeyMapping.Category CAT_VISION_KEY_CATEGORY =
+            KeyMapping.Category.register(net.minecraft.resources.Identifier.fromNamespaceAndPath(CatVision.MOD_ID, "cat_vision"));
+    //?} else {
+    /*public static final String CAT_VISION_CATEGORY = "key.categories.cat_vision";
+	*///?}
 
     public static KeyMapping toggleNightVisionKey = new KeyMapping(
             KEY_TOGGLE_CLIENT_NV,
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_COMMA,
-            CAT_VISION_CATEGORY
+            //? >= 1.21.9 {
+            CAT_VISION_KEY_CATEGORY
+            //?} else {
+            /*CAT_VISION_CATEGORY*/
+            //?}
     );
 	public static KeyMapping openConfigKey = new KeyMapping(
 			KEY_OPEN_CONFIG,
 			InputConstants.Type.KEYSYM,
 			GLFW.GLFW_KEY_F12,
-			CAT_VISION_CATEGORY
+			//? >= 1.21.9 {
+			CAT_VISION_KEY_CATEGORY
+			//?} else {
+			/*CAT_VISION_CATEGORY*/
+			//?}
 	);
 
     public static void onKeyTick(Minecraft client) {

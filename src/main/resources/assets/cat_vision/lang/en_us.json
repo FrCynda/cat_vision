@@ -1,5 +1,6 @@
 {
     "key.categories.cat_vision": "CatVision",
+    "key.category.cat_vision.cat_vision": "CatVision",
     "key.cat_vision.toggle_client_night_vision": "Toggle Night Vision",
     "key.cat_vision.open_config_screen": "Open Config Screen",
 
