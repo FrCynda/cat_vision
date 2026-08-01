@@ -22,8 +22,13 @@ public class EndTickListener {
         if (client.player.hasEffect(MobEffects.BLINDNESS) && config.blindness_immunity && isSingleplayer)
             client.player.removeEffect(MobEffects.BLINDNESS);
 
-        if (client.player.hasEffect(MobEffects.CONFUSION) && config.nausea_immunity)
+		//? < 1.21.5 {
+        /*if (client.player.hasEffect(MobEffects.CONFUSION) && config.nausea_immunity)
             client.player.removeEffect(MobEffects.CONFUSION);
+		*///?} >= 1.21.5 {
+		if (client.player.hasEffect(MobEffects.NAUSEA) && config.nausea_immunity)
+			client.player.removeEffect(MobEffects.NAUSEA);
+		//?}
 
 		if (client.player.hasEffect(MobEffects.DARKNESS) && config.darkness_immunity)
 			client.player.removeEffect(MobEffects.DARKNESS);
