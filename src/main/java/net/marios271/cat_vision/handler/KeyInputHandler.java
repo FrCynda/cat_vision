@@ -20,7 +20,7 @@ public class KeyInputHandler {
     public static final String KEY_OPEN_CONFIG = "key.cat_vision.open_config_screen";
 
     //? >= 1.21.9 {
-    public static final KeyMapping.Category CAT_VISION_KEY_CATEGORY =
+    public static final KeyMapping.Category CAT_VISION_CATEGORY =
             KeyMapping.Category.register(net.minecraft.resources.Identifier.fromNamespaceAndPath(CatVision.MOD_ID, "cat_vision"));
     //?} else {
     /*public static final String CAT_VISION_CATEGORY = "key.categories.cat_vision";
@@ -30,21 +30,13 @@ public class KeyInputHandler {
             KEY_TOGGLE_CLIENT_NV,
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_COMMA,
-            //? >= 1.21.9 {
-            CAT_VISION_KEY_CATEGORY
-            //?} else {
-            /*CAT_VISION_CATEGORY
-            *///?}
+            CAT_VISION_CATEGORY
     );
 	public static KeyMapping openConfigKey = new KeyMapping(
 			KEY_OPEN_CONFIG,
 			InputConstants.Type.KEYSYM,
 			GLFW.GLFW_KEY_F12,
-			//? >= 1.21.9 {
-			CAT_VISION_KEY_CATEGORY
-			//?} else {
-			/*CAT_VISION_CATEGORY
-			*///?}
+			CAT_VISION_CATEGORY
 	);
 
     public static void onKeyTick(Minecraft client) {
