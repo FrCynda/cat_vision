@@ -93,9 +93,15 @@ public class KeyInputHandler {
             }
         }
 		else if (openConfigKey.consumeClick()) {
-			if (Minecraft.getInstance().screen == null) {
+			//? < 26.2 {
+			/*if (Minecraft.getInstance().screen == null) {
 				Minecraft.getInstance().setScreen(ConfigScreen.create(null, CatVision.CONFIG));
 			}
+			*///?} >= 26.2 {
+			if (Minecraft.getInstance().gui.screen() == null) {
+				Minecraft.getInstance().gui.setScreen(ConfigScreen.create(null, CatVision.CONFIG));
+			}
+			//?}
 		}
     }
 }
