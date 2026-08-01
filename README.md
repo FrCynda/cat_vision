@@ -11,7 +11,7 @@ This is a rewrite of CatVision 2.0, now known as CatVision Architectury, in orde
 The new mod supports Fabric (all versions), Forge (up to 1.21.1) and NeoForge (starting at 1.20.5).
 To view the old mod, visit [Modrinth](https://modrinth.com/mod/catvision-architectury) or [Curseforge](https://curseforge.com/minecraft/mc-mods/catvision-architectury).
 
-> **DISCLAIMER: I do not endorse anyone to use this mod in order to gain an advantage against others, especially in competitive settings. Please follow the rules of the server, realm or similar you are playing on! I, MarioS271, the creator of this mod, hereby exclude myself from any responsibility for any and all consequences by misuse of this mod.**
+> **DISCLAIMER: I do not endorse anyone to use this mod in order to gain an advantage against others, especially in competitive settings. Please follow the rules of the server, realm or similar you are playing on! I am not responsible for any consequences of this mod being misused.**
 
 ---
 
