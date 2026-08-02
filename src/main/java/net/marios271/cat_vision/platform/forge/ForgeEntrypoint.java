@@ -68,23 +68,16 @@ public class ForgeEntrypoint {
 		);
 		//?}
 
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
-		//? >= 1.19 {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onRegisterKeyMappings);
-		//?}
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	private void onClientSetup(FMLClientSetupEvent event) {
-		//? < 1.19 {
-		/^ClientRegistry.registerKeyBinding(KeyInputHandler.toggleNightVisionKey);
+	//? < 1.19 {
+	/^private void onRegisterKeyMappings(FMLClientSetupEvent event) {
+		ClientRegistry.registerKeyBinding(KeyInputHandler.toggleNightVisionKey);
 		ClientRegistry.registerKeyBinding(KeyInputHandler.openConfigKey);
-		^///?} >= 1.19 {
-
-		//?}
 	}
-
-	//? >= 1.19 {
+	^///?} >= 1.19 {
 	private void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
 		event.register(KeyInputHandler.toggleNightVisionKey);
 		event.register(KeyInputHandler.openConfigKey);
