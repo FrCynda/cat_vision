@@ -25,7 +25,7 @@ public class ConfigData {
     public void save() {
         try (FileWriter writer = new FileWriter(file)) {
             GSON.toJson(this, writer);
-            CatVision.LOGGER.info("Saved CatVision config");
+            CatVision.LOGGER.info("Saved " + CatVision.MOD_FRIENDLY_NAME + " config");
         } catch (IOException exception) {
             CatVision.LOGGER.error("Failed to save config", exception);
         }
@@ -36,7 +36,7 @@ public class ConfigData {
         ConfigData result = null;
         if (file.exists()) {
             try (FileReader reader = new FileReader(file)) {
-                CatVision.LOGGER.info("Loaded CatVision config");
+                CatVision.LOGGER.info("Loaded " + CatVision.MOD_FRIENDLY_NAME + " config");
                 result = GSON.fromJson(reader, ConfigData.class);
             } catch (IOException exception) {
                 CatVision.LOGGER.warn("Failed to load config, returning default values");
