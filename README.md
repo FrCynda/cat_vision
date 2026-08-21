@@ -1,5 +1,8 @@
 # CatVision
 
+> **This is a fork of [MarioS271/cat_vision](https://github.com/MarioS271/cat_vision).**
+> The mod is his work. This fork is not published anywhere and has to be built from source.
+
 A minecraft mod which gives you Night Vision, even if you aren't a server operator. Inspired by CatEyes by Tee6! :)
 
 With this mod, you can give yourself night vision with the click of a button.
