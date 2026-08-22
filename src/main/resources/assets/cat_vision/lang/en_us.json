@@ -20,6 +20,10 @@
     "text.cat_vision.config.option.nv_lit_light": "Light level counted as lit",
     "text.cat_vision.config.option.nv_shape": "Curve shape",
     "text.cat_vision.config.option.nv_speed": "Fade speed",
+    "text.cat_vision.config.option.dimension_override": "Use own settings here",
+    "text.cat_vision.config.dimension.overworld": "Overworld",
+    "text.cat_vision.config.dimension.the_nether": "The Nether",
+    "text.cat_vision.config.dimension.the_end": "The End",
 
     "text.cat_vision.config.tooltip.blindness_disclaimer.1": "[!] Blindness Suppression only works on Singleplayer",
     "text.cat_vision.config.tooltip.blindness_disclaimer.2": "and not on LAN or multiplayer worlds, as suppressing",
@@ -37,7 +41,10 @@
     "text.cat_vision.config.tooltip.nv_dark.3": "The same value as above means the curve does nothing.",
     "text.cat_vision.config.tooltip.nv_shape.1": "Below 1.0 fades in early, above 1.0 waits until it",
     "text.cat_vision.config.tooltip.nv_shape.2": "really is dark. 1.0 is a straight line.",
-    "text.cat_vision.config.tooltip.nv_speed": "How fast it fades between the two. 1.0 is instant."
+    "text.cat_vision.config.tooltip.nv_speed": "How fast it fades between the two. 1.0 is instant.",
+    "text.cat_vision.config.tooltip.dimension_override.1": "Replaces the settings above while you are in this",
+    "text.cat_vision.config.tooltip.dimension_override.2": "dimension. Night Vision then follows this section when",
+    "text.cat_vision.config.tooltip.dimension_override.3": "you enter it, ignoring \"Remember Night Vision\"."
 
 
 
