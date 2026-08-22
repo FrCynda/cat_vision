@@ -1,13 +1,21 @@
 package net.marios271.cat_vision.config;
 
+import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 //? < 1.19 {
-/*import net.minecraft.network.chat.TranslatableComponent;
+/*import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 *///?}
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.function.DoubleConsumer;
+import java.util.function.Function;
 
 public class ConfigScreen {
 	private static final String PREFIX = "text.cat_vision.config.";
@@ -53,9 +61,73 @@ public class ConfigScreen {
 			.build());
 		//?}
 
+		for (AbstractConfigListEntry entry : curveEntries(entryBuilder, config))
+			category.addEntry(entry);
+
 		builder.setSavingRunnable(config::save);
 
 		return builder.build();
+	}
+
+	private static List<AbstractConfigListEntry> curveEntries(ConfigEntryBuilder entryBuilder, VisionSettings settings) {
+		List<AbstractConfigListEntry> entries = new ArrayList<>();
+
+		entries.add(entryBuilder.startBooleanToggle(text(PREFIX + "option.nv_curve"), settings.nv_curve)
+			.setDefaultValue(false)
+			.setTooltip(
+				text(PREFIX + "tooltip.nv_curve.1"),
+				text(PREFIX + "tooltip.nv_curve.2"),
+				text(PREFIX + "tooltip.nv_curve.3"),
+				text(PREFIX + "tooltip.nv_curve.4")
+			)
+			.setSaveConsumer(v -> settings.nv_curve = v)
+			.build());
+
+		entries.add(slider(entryBuilder, "nv_lit", percent(settings.nv_lit), 0, 100, 0,
+			v -> literal(v + "%"),
+			v -> settings.nv_lit = v / 100.0,
+			text(PREFIX + "tooltip.nv_lit.1"),
+			text(PREFIX + "tooltip.nv_lit.2")));
+
+		entries.add(slider(entryBuilder, "nv_dark", percent(settings.nv_dark), 0, 100, 100,
+			v -> literal(v + "%"),
+			v -> settings.nv_dark = v / 100.0,
+			text(PREFIX + "tooltip.nv_dark.1"),
+			text(PREFIX + "tooltip.nv_dark.2"),
+			text(PREFIX + "tooltip.nv_dark.3")));
+
+		entries.add(slider(entryBuilder, "nv_lit_light", settings.nv_lit_light, 0, 15, 12,
+			v -> literal(String.valueOf(v)),
+			v -> settings.nv_lit_light = (int) v,
+			text(PREFIX + "tooltip.nv_lit_light")));
+
+		entries.add(slider(entryBuilder, "nv_shape", (int) Math.round(settings.nv_shape * 10), 1, 50, 10,
+			v -> literal(String.format(Locale.ROOT, "%.1f", v / 10.0)),
+			v -> settings.nv_shape = v / 10.0,
+			text(PREFIX + "tooltip.nv_shape.1"),
+			text(PREFIX + "tooltip.nv_shape.2")));
+
+		entries.add(slider(entryBuilder, "nv_speed", (int) Math.round(settings.nv_speed * 100), 1, 100, 1,
+			v -> literal(String.format(Locale.ROOT, "%.2f", v / 100.0)),
+			v -> settings.nv_speed = v / 100.0,
+			text(PREFIX + "tooltip.nv_speed")));
+
+		return entries;
+	}
+
+	private static AbstractConfigListEntry slider(ConfigEntryBuilder entryBuilder, String key, int value,
+			int min, int max, int defaultValue, Function<Integer, Component> textGetter,
+			DoubleConsumer save, Component... tooltip) {
+		return entryBuilder.startIntSlider(text(PREFIX + "option." + key), value, min, max)
+			.setDefaultValue(defaultValue)
+			.setTextGetter(textGetter)
+			.setTooltip(tooltip)
+			.setSaveConsumer(v -> save.accept(v))
+			.build();
+	}
+
+	private static int percent(double value) {
+		return (int) Math.round(value * 100);
 	}
 
 	private static Component text(String key) {
@@ -63,6 +135,14 @@ public class ConfigScreen {
 		/*return new TranslatableComponent(key);
 		*///?} >= 1.19 {
 		return Component.translatable(key);
+		//?}
+	}
+
+	private static Component literal(String value) {
+		//? < 1.19 {
+		/*return new TextComponent(value);
+		*///?} >= 1.19 {
+		return Component.literal(value);
 		//?}
 	}
 }
