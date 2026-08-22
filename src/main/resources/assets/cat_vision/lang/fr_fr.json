@@ -1,0 +1,51 @@
+{
+    "key.categories.cat_vision": "CatVision",
+    "key.category.cat_vision.cat_vision": "CatVision",
+    "key.cat_vision.toggle_client_night_vision": "Basculer la vision nocturne",
+    "key.cat_vision.open_config_screen": "Ouvrir la configuration",
+
+    "message.cat_vision.activated": "§l§7[§8Cat§6Vision§7]§r Cat Vision activé",
+    "message.cat_vision.deactivated": "§l§7[§8Cat§6Vision§7]§r Cat Vision désactivé",
+
+    "text.cat_vision.config.title": "Configuration de CatVision",
+    "text.cat_vision.config.category": "CatVision",
+    "text.cat_vision.config.option.remember_nv": "Mémoriser la vision nocturne",
+    "text.cat_vision.config.option.auto_nv": "Activer la vision nocturne automatiquement",
+    "text.cat_vision.config.option.blindness_immunity": "Immunité à la cécité",
+    "text.cat_vision.config.option.nausea_immunity": "Immunité à la nausée",
+    "text.cat_vision.config.option.darkness_immunity": "Immunité à l'obscurité",
+    "text.cat_vision.config.option.nv_curve": "Courbe automatique de vision nocturne",
+    "text.cat_vision.config.option.nv_lit": "Vision nocturne dans les endroits éclairés",
+    "text.cat_vision.config.option.nv_dark": "Vision nocturne dans le noir",
+    "text.cat_vision.config.option.nv_lit_light": "Niveau de lumière considéré comme éclairé",
+    "text.cat_vision.config.option.nv_shape": "Forme de la courbe",
+    "text.cat_vision.config.option.nv_speed": "Vitesse de transition",
+    "text.cat_vision.config.option.dimension_override": "Réglages propres à cette dimension",
+    "text.cat_vision.config.dimension.overworld": "Monde principal",
+    "text.cat_vision.config.dimension.the_nether": "Le Nether",
+    "text.cat_vision.config.dimension.the_end": "L'End",
+
+    "text.cat_vision.config.tooltip.blindness_disclaimer.1": "[!] La suppression de la cécité ne marche qu'en solo,",
+    "text.cat_vision.config.tooltip.blindness_disclaimer.2": "pas en LAN ni en multijoueur : la supprimer permet de",
+    "text.cat_vision.config.tooltip.blindness_disclaimer.3": "courir, ce qu'un joueur ne devrait pas pouvoir faire",
+    "text.cat_vision.config.tooltip.blindness_disclaimer.4": "sous l'effet de cécité.",
+    "text.cat_vision.config.tooltip.nv_curve.1": "Fait apparaître la vision nocturne à mesure qu'il",
+    "text.cat_vision.config.tooltip.nv_curve.2": "fait plus sombre, pour passer d'un endroit éclairé",
+    "text.cat_vision.config.tooltip.nv_curve.3": "à un endroit sombre sans rien activer vous-même.",
+    "text.cat_vision.config.tooltip.nv_curve.4": "La touche active et désactive alors la courbe.",
+    "text.cat_vision.config.tooltip.nv_lit_light": "Dès ce niveau de lumière, la valeur claire s'applique.",
+    "text.cat_vision.config.tooltip.nv_lit.1": "Quantité de vision nocturne quand il fait clair.",
+    "text.cat_vision.config.tooltip.nv_lit.2": "0 = votre vue normale, 1 = la potion complète.",
+    "text.cat_vision.config.tooltip.nv_dark.1": "Quantité de vision nocturne au niveau 0, noir total.",
+    "text.cat_vision.config.tooltip.nv_dark.2": "1 correspond exactement à une potion de vision nocturne.",
+    "text.cat_vision.config.tooltip.nv_dark.3": "La même valeur qu'au-dessus rend la courbe inutile.",
+    "text.cat_vision.config.tooltip.nv_shape.1": "En dessous de 1.0 elle apparaît tôt, au-dessus elle",
+    "text.cat_vision.config.tooltip.nv_shape.2": "attend qu'il fasse vraiment noir. 1.0 est une droite.",
+    "text.cat_vision.config.tooltip.nv_speed": "Vitesse de transition entre les deux. 1.0 est instantané.",
+    "text.cat_vision.config.tooltip.dimension_override.1": "Remplace les réglages ci-dessus tant que vous êtes",
+    "text.cat_vision.config.tooltip.dimension_override.2": "dans cette dimension. En y entrant, la vision nocturne",
+    "text.cat_vision.config.tooltip.dimension_override.3": "suit cette section et ignore « Mémoriser la vision nocturne »."
+
+
+
+}
