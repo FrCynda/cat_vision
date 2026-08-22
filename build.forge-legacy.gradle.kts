@@ -53,9 +53,10 @@ loom {
 		mixinConfig("${prop("mod.id")}.mixins.json")
 	}
 
-	// The mixin AP has to be told where to put the refmap, otherwise reobf cannot find it.
-	tasks.withType<JavaCompile>().configureEach {
-		options.compilerArgs.add("-AoutRefMapFile=${layout.buildDirectory.get()}/${prop("mod.id")}.mixins.refmap.json")
+	// Loom's own mixin AP knows the Mojang -> SRG mapping the refmap needs; without this the
+	// bundled annotation processor runs with no mappings and cannot resolve any mixin target.
+	mixin {
+		defaultRefmapName.set("${prop("mod.id")}.mixins.refmap.json")
 	}
 }
 
@@ -71,8 +72,6 @@ dependencies {
 	minecraft("com.mojang:minecraft:${prop("deps.minecraft")}")
 	mappings(loom.officialMojangMappings())
 	"forge"("net.minecraftforge:forge:${prop("deps.minecraft")}-${prop("deps.forge")}")
-
-	annotationProcessor("org.spongepowered:mixin:${libs.versions.mixin.get()}:processor")
 
 	modImplementation("me.shedaniel.cloth:cloth-config-forge:${prop("deps.cloth-config")}")
 }
