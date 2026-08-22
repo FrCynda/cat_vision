@@ -52,6 +52,11 @@ loom {
 	forge {
 		mixinConfig("${prop("mod.id")}.mixins.json")
 	}
+
+	// The mixin AP has to be told where to put the refmap, otherwise reobf cannot find it.
+	tasks.withType<JavaCompile>().configureEach {
+		options.compilerArgs.add("-AoutRefMapFile=${layout.buildDirectory.get()}/${prop("mod.id")}.mixins.refmap.json")
+	}
 }
 
 repositories {
