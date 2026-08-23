@@ -36,7 +36,6 @@ public class VisionSettings {
 					settings.nv_lit_light = defaults.nv_lit_light;
 					settings.nv_shape = defaults.nv_shape;
 					settings.nv_speed = this == SLOW ? defaults.nv_speed : 0.1;
-					settings.auto_nv = defaults.auto_nv;
 					break;
 				default:
 					break;
@@ -51,7 +50,7 @@ public class VisionSettings {
 			for (Preset preset : new Preset[] { SLOW, ADAPTIVE }) {
 				VisionSettings applied = settings.copy();
 				preset.applyTo(applied);
-				if (applied.sameAs(settings))
+				if (applied.sameCurveAs(settings))
 					return preset;
 			}
 			return CUSTOM;
