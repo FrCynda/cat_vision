@@ -58,8 +58,11 @@ public class VisionSettings {
 	}
 
 	public double strengthFor(int light) {
-		double darkness = (nv_lit_light - light) / (double) nv_lit_light;
-		return clamp(nv_lit + (nv_dark - nv_lit) * Math.pow(darkness, nv_shape), 0.0, 1.0);
+		int litLight = (int) clamp(nv_lit_light, 0, 15);
+		double shape = clamp(nv_shape, 0.01, 10.0);
+
+		double darkness = clamp((litLight - light) / (double) litLight, 0.0, 1.0);
+		return clamp(nv_lit + (nv_dark - nv_lit) * Math.pow(darkness, shape), 0.0, 1.0);
 	}
 
 	public boolean sameAs(VisionSettings other) {

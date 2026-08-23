@@ -14,6 +14,21 @@ public class NightVisionCurveCheck {
 		for (int light = 1; light <= 15; light++)
 			assert settings.strengthFor(light) <= settings.strengthFor(light - 1) : "strength must not rise with light";
 
+		VisionSettings early = settings.copy();
+		early.nv_shape = 0.5;
+		VisionSettings late = settings.copy();
+		late.nv_shape = 2.0;
+		assert early.strengthFor(6) > late.strengthFor(6) : "a lower exponent must brighten earlier";
+
+		VisionSettings edited = settings.copy();
+		edited.nv_shape = 0.0;
+		assert edited.strengthFor(15) == edited.nv_lit : "a curve shape of 0 must not brighten daylight";
+		edited.nv_shape = -1.0;
+		assert edited.strengthFor(15) == edited.nv_lit : "a negative curve shape must not brighten daylight";
+		edited.nv_shape = 1.0;
+		edited.nv_lit_light = 40;
+		assert edited.strengthFor(15) == edited.nv_lit : "the lit strength must be reachable at light 15";
+
 		VisionSettings tweaked = new VisionSettings();
 		tweaked.auto_nv = false;
 		tweaked.nv_curve = true;
