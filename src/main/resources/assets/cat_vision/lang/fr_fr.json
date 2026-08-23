@@ -60,6 +60,9 @@
     "text.cat_vision.config.tooltip.preset.custom": "Vos propres valeurs, réglées dans les réglages avancés ci-dessous.",
     "text.cat_vision.config.option.advanced": "Avancé",
     "text.cat_vision.config.tooltip.advanced.1": "Les curseurs que le préréglage ci-dessus remplace.",
-    "text.cat_vision.config.tooltip.advanced.2": "En bouger un fait passer le préréglage sur « Personnalisée »."
+    "text.cat_vision.config.tooltip.advanced.2": "En bouger un fait passer le préréglage sur « Personnalisée ».",
 
+    "text.cat_vision.config.option.reset": "Réinitialiser tous les réglages",
+    "text.cat_vision.config.tooltip.reset.1": "Remet chaque réglage, y compris ceux par dimension, à sa valeur par défaut.",
+    "text.cat_vision.config.tooltip.reset.2": "Appliqué à la sauvegarde : décochez pour annuler."
 }

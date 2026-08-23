@@ -60,6 +60,9 @@
     "text.cat_vision.config.tooltip.preset.custom": "Deine eigenen Werte aus den erweiterten Einstellungen unten.",
     "text.cat_vision.config.option.advanced": "Erweitert",
     "text.cat_vision.config.tooltip.advanced.1": "Die Regler, für die die Voreinstellung oben steht.",
-    "text.cat_vision.config.tooltip.advanced.2": "Wer einen davon bewegt, macht aus der Voreinstellung \"Benutzerdefiniert\"."
+    "text.cat_vision.config.tooltip.advanced.2": "Wer einen davon bewegt, macht aus der Voreinstellung \"Benutzerdefiniert\".",
 
+    "text.cat_vision.config.option.reset": "Alle Einstellungen zurücksetzen",
+    "text.cat_vision.config.tooltip.reset.1": "Setzt jede Einstellung, auch die pro Dimension, auf ihren Standardwert zurück.",
+    "text.cat_vision.config.tooltip.reset.2": "Passiert beim Speichern, zum Abbrechen einfach wieder abwählen."
 }

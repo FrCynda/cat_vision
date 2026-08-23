@@ -70,6 +70,20 @@ public class ConfigScreen {
 		List<Runnable> afterSave = new ArrayList<>();
 		addDimensionEntries(category, entryBuilder, config, afterSave);
 
+		boolean[] reset = new boolean[1];
+		category.addEntry(entryBuilder.startBooleanToggle(text(PREFIX + "option.reset"), false)
+			.setDefaultValue(false)
+			.setTooltip(
+				text(PREFIX + "tooltip.reset.1"),
+				text(PREFIX + "tooltip.reset.2")
+			)
+			.setSaveConsumer(v -> reset[0] = v)
+			.build());
+		afterSave.add(() -> {
+			if (reset[0])
+				config.resetToDefaults();
+		});
+
 		builder.setSavingRunnable(() -> {
 			for (Runnable task : afterSave)
 				task.run();

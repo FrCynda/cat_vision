@@ -30,6 +30,16 @@ public class ConfigData extends VisionSettings {
         return override != null ? override : this;
     }
 
+    public void resetToDefaults() {
+        ConfigData defaults = new ConfigData();
+        remember_nv = defaults.remember_nv;
+        blindness_immunity = defaults.blindness_immunity;
+        nausea_immunity = defaults.nausea_immunity;
+        darkness_immunity = defaults.darkness_immunity;
+        dimension_overrides.clear();
+        copyFrom(defaults);
+    }
+
     public void save() {
         try (FileWriter writer = new FileWriter(file)) {
             GSON.toJson(this, writer);

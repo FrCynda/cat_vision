@@ -60,6 +60,9 @@
     "text.cat_vision.config.tooltip.preset.custom": "Deine eignan Weat aus de erweiterten Eistöllungen do unt.",
     "text.cat_vision.config.option.advanced": "Erweitert",
     "text.cat_vision.config.tooltip.advanced.1": "De Regla, fia de wo de Voreistöllung do obn steht.",
-    "text.cat_vision.config.tooltip.advanced.2": "Wannst oan dovo bewegst, wiad aus da Voreistöllung \"Söwa eigstöllt\"."
+    "text.cat_vision.config.tooltip.advanced.2": "Wannst oan dovo bewegst, wiad aus da Voreistöllung \"Söwa eigstöllt\".",
 
+    "text.cat_vision.config.option.reset": "Olle Eistöllungen zrucksetzn",
+    "text.cat_vision.config.tooltip.reset.1": "Setzt jede Eistöllung, aa de pro Dimension, auf ihrn Standardwert zruck.",
+    "text.cat_vision.config.tooltip.reset.2": "Passiert beim Speichern, zum Obbrechn oafoch wieda obwöhln."
 }

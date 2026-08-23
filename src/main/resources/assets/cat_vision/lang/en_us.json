@@ -60,6 +60,9 @@
     "text.cat_vision.config.tooltip.preset.custom": "Your own values from the advanced settings below.",
     "text.cat_vision.config.option.advanced": "Advanced",
     "text.cat_vision.config.tooltip.advanced.1": "The sliders the preset above stands in for.",
-    "text.cat_vision.config.tooltip.advanced.2": "Moving any of them turns the preset into Custom."
+    "text.cat_vision.config.tooltip.advanced.2": "Moving any of them turns the preset into Custom.",
 
+    "text.cat_vision.config.option.reset": "Reset all settings",
+    "text.cat_vision.config.tooltip.reset.1": "Puts every setting, including the per dimension ones, back to its default.",
+    "text.cat_vision.config.tooltip.reset.2": "Happens when you save, so untick it to change your mind."
 }
