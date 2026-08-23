@@ -61,7 +61,9 @@ public class VisionSettings {
 		int litLight = (int) clamp(nv_lit_light, 0, 15);
 		double shape = clamp(nv_shape, 0.01, 10.0);
 
-		double darkness = clamp((litLight - light) / (double) litLight, 0.0, 1.0);
+		double darkness = litLight <= 0
+			? (light <= 0 ? 1.0 : 0.0)
+			: clamp((litLight - light) / (double) litLight, 0.0, 1.0);
 		return clamp(nv_lit + (nv_dark - nv_lit) * Math.pow(darkness, shape), 0.0, 1.0);
 	}
 

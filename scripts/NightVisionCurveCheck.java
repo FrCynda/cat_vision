@@ -20,6 +20,15 @@ public class NightVisionCurveCheck {
 		late.nv_shape = 2.0;
 		assert early.strengthFor(6) > late.strengthFor(6) : "a lower exponent must brighten earlier";
 
+		VisionSettings silly = settings.copy();
+		silly.nv_dark = 50.0;
+		silly.nv_lit = -20.0;
+		silly.nv_lit_light = 0;
+		for (int light = 0; light <= 15; light++) {
+			double strength = silly.strengthFor(light);
+			assert strength >= 0.0 && strength <= 1.0 : "strength escaped 0..1: " + strength;
+		}
+
 		VisionSettings edited = settings.copy();
 		edited.nv_shape = 0.0;
 		assert edited.strengthFor(15) == edited.nv_lit : "a curve shape of 0 must not brighten daylight";
