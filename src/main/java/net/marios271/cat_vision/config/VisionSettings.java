@@ -10,6 +10,54 @@ public class VisionSettings {
 	public int nv_lit_light = 12;
 	public double nv_speed = 0.01;
 
+	public enum Preset {
+		SLOW,
+		ADAPTIVE,
+		ALWAYS,
+		NEVER,
+		CUSTOM;
+
+		public void applyTo(VisionSettings settings) {
+			VisionSettings defaults = new VisionSettings();
+			switch (this) {
+				case ALWAYS:
+					settings.nv_curve = false;
+					break;
+				case NEVER:
+					settings.nv_curve = true;
+					settings.nv_lit = 0.0;
+					settings.nv_dark = 0.0;
+					break;
+				case SLOW:
+				case ADAPTIVE:
+					settings.nv_curve = true;
+					settings.nv_lit = defaults.nv_lit;
+					settings.nv_dark = defaults.nv_dark;
+					settings.nv_lit_light = defaults.nv_lit_light;
+					settings.nv_shape = defaults.nv_shape;
+					settings.nv_speed = this == SLOW ? defaults.nv_speed : 0.1;
+					settings.auto_nv = defaults.auto_nv;
+					break;
+				default:
+					break;
+			}
+		}
+
+		public static Preset of(VisionSettings settings) {
+			if (!settings.nv_curve)
+				return ALWAYS;
+			if (settings.nv_lit == 0.0 && settings.nv_dark == 0.0)
+				return NEVER;
+			for (Preset preset : new Preset[] { SLOW, ADAPTIVE }) {
+				VisionSettings applied = settings.copy();
+				preset.applyTo(applied);
+				if (applied.sameAs(settings))
+					return preset;
+			}
+			return CUSTOM;
+		}
+	}
+
 	public double strengthFor(int light) {
 		double darkness = (nv_lit_light - light) / (double) nv_lit_light;
 		return clamp(nv_lit + (nv_dark - nv_lit) * Math.pow(darkness, nv_shape), 0.0, 1.0);

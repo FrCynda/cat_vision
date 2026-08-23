@@ -44,8 +44,22 @@
     "text.cat_vision.config.tooltip.nv_speed": "Wie schnell übergeblendet wird. 1.0 ist sofort.",
     "text.cat_vision.config.tooltip.dimension_override.1": "Ersetzt die Einstellungen oben, solange du in dieser",
     "text.cat_vision.config.tooltip.dimension_override.2": "Dimension bist. Nachtsicht folgt beim Betreten dann",
-    "text.cat_vision.config.tooltip.dimension_override.3": "diesem Abschnitt und ignoriert \"Nachtsicht merken\"."
+    "text.cat_vision.config.tooltip.dimension_override.3": "diesem Abschnitt und ignoriert \"Nachtsicht merken\".",
 
 
+    "text.cat_vision.config.option.nv_preset": "Nachtsicht",
+    "text.cat_vision.config.preset.slow": "Langsame Anpassung",
+    "text.cat_vision.config.preset.adaptive": "Anpassend",
+    "text.cat_vision.config.preset.always": "Immer",
+    "text.cat_vision.config.preset.never": "Nie",
+    "text.cat_vision.config.preset.custom": "Benutzerdefiniert",
+    "text.cat_vision.config.tooltip.preset.slow": "Empfohlen. Blendet sich ein, je dunkler es wird, so langsam, dass man es kaum bemerkt.",
+    "text.cat_vision.config.tooltip.preset.adaptive": "Derselbe Übergang, schnell genug, um ihn zu sehen.",
+    "text.cat_vision.config.tooltip.preset.always": "Volle Nachtsicht, sobald sie an ist, genau wie der Mod schon immer funktioniert hat.",
+    "text.cat_vision.config.tooltip.preset.never": "Nachtsicht erscheint nie, auch wenn sie an ist. Gedacht für einzelne Dimensionen.",
+    "text.cat_vision.config.tooltip.preset.custom": "Deine eigenen Werte aus den erweiterten Einstellungen unten.",
+    "text.cat_vision.config.option.advanced": "Erweitert",
+    "text.cat_vision.config.tooltip.advanced.1": "Die Regler, für die die Voreinstellung oben steht.",
+    "text.cat_vision.config.tooltip.advanced.2": "Wer einen davon bewegt, macht aus der Voreinstellung \"Benutzerdefiniert\"."
 
 }

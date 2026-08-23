@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.DoubleConsumer;
 import java.util.function.Function;
@@ -63,7 +64,7 @@ public class ConfigScreen {
 			.build());
 		//?}
 
-		for (AbstractConfigListEntry entry : curveEntries(entryBuilder, config))
+		for (AbstractConfigListEntry entry : nvEntries(entryBuilder, config))
 			category.addEntry(entry);
 
 		List<Runnable> afterSave = new ArrayList<>();
@@ -115,7 +116,7 @@ public class ConfigScreen {
 				})
 				.build());
 			entries.add(autoNvEntry(entryBuilder, settings));
-			entries.addAll(curveEntries(entryBuilder, settings));
+			entries.addAll(nvEntries(entryBuilder, settings));
 
 			category.addEntry(entryBuilder.startSubCategory(dimensionName(dimension), entries).build());
 		}
@@ -139,6 +140,32 @@ public class ConfigScreen {
 			.setDefaultValue(true)
 			.setSaveConsumer(v -> settings.auto_nv = v)
 			.build();
+	}
+
+	private static List<AbstractConfigListEntry> nvEntries(ConfigEntryBuilder entryBuilder, VisionSettings settings) {
+		List<AbstractConfigListEntry> entries = new ArrayList<>();
+
+		entries.add(entryBuilder.startEnumSelector(text(PREFIX + "option.nv_preset"), VisionSettings.Preset.class, VisionSettings.Preset.of(settings))
+			.setDefaultValue(VisionSettings.Preset.of(new VisionSettings()))
+			.setEnumNameProvider(preset -> text(PREFIX + "preset." + presetKey(preset.name())))
+			.setTooltipSupplier(preset -> Optional.of(new Component[] {
+				text(PREFIX + "tooltip.preset." + presetKey(preset.name()))
+			}))
+			.setSaveConsumer(preset -> preset.applyTo(settings))
+			.build());
+
+		entries.add(entryBuilder.startSubCategory(text(PREFIX + "option.advanced"), curveEntries(entryBuilder, settings))
+			.setTooltip(
+				text(PREFIX + "tooltip.advanced.1"),
+				text(PREFIX + "tooltip.advanced.2")
+			)
+			.build());
+
+		return entries;
+	}
+
+	private static String presetKey(String name) {
+		return name.toLowerCase(Locale.ROOT);
 	}
 
 	private static List<AbstractConfigListEntry> curveEntries(ConfigEntryBuilder entryBuilder, VisionSettings settings) {

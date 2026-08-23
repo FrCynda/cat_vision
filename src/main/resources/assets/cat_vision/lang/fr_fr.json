@@ -44,8 +44,22 @@
     "text.cat_vision.config.tooltip.nv_speed": "Vitesse de transition entre les deux. 1.0 est instantané.",
     "text.cat_vision.config.tooltip.dimension_override.1": "Remplace les réglages ci-dessus tant que vous êtes",
     "text.cat_vision.config.tooltip.dimension_override.2": "dans cette dimension. En y entrant, la vision nocturne",
-    "text.cat_vision.config.tooltip.dimension_override.3": "suit cette section et ignore « Mémoriser la vision nocturne »."
+    "text.cat_vision.config.tooltip.dimension_override.3": "suit cette section et ignore « Mémoriser la vision nocturne ».",
 
 
+    "text.cat_vision.config.option.nv_preset": "Vision nocturne",
+    "text.cat_vision.config.preset.slow": "Adaptation lente",
+    "text.cat_vision.config.preset.adaptive": "Adaptative",
+    "text.cat_vision.config.preset.always": "Toujours",
+    "text.cat_vision.config.preset.never": "Jamais",
+    "text.cat_vision.config.preset.custom": "Personnalisée",
+    "text.cat_vision.config.tooltip.preset.slow": "Recommandé. Apparaît à mesure qu'il fait sombre, assez lentement pour que vous ne le remarquiez presque pas.",
+    "text.cat_vision.config.tooltip.preset.adaptive": "La même transition, assez rapide pour être visible.",
+    "text.cat_vision.config.tooltip.preset.always": "Vision nocturne complète dès qu'elle est activée, exactement comme le mod a toujours fonctionné.",
+    "text.cat_vision.config.tooltip.preset.never": "La vision nocturne n'apparaît jamais, même activée. Prévu pour une dimension en particulier.",
+    "text.cat_vision.config.tooltip.preset.custom": "Vos propres valeurs, réglées dans les réglages avancés ci-dessous.",
+    "text.cat_vision.config.option.advanced": "Avancé",
+    "text.cat_vision.config.tooltip.advanced.1": "Les curseurs que le préréglage ci-dessus remplace.",
+    "text.cat_vision.config.tooltip.advanced.2": "En bouger un fait passer le préréglage sur « Personnalisée »."
 
 }
