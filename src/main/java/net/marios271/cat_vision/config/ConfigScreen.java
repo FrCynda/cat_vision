@@ -64,10 +64,11 @@ public class ConfigScreen {
 			.build());
 		//?}
 
-		for (AbstractConfigListEntry entry : nvEntries(entryBuilder, config))
+		List<Runnable> afterSave = new ArrayList<>();
+
+		for (AbstractConfigListEntry entry : nvEntries(entryBuilder, config, afterSave))
 			category.addEntry(entry);
 
-		List<Runnable> afterSave = new ArrayList<>();
 		addDimensionEntries(category, entryBuilder, config, afterSave);
 
 		boolean[] reset = new boolean[1];
@@ -130,7 +131,7 @@ public class ConfigScreen {
 				})
 				.build());
 			entries.add(autoNvEntry(entryBuilder, settings));
-			entries.addAll(nvEntries(entryBuilder, settings));
+			entries.addAll(nvEntries(entryBuilder, settings, afterSave));
 
 			category.addEntry(entryBuilder.startSubCategory(dimensionName(dimension), entries).build());
 		}
@@ -156,17 +157,28 @@ public class ConfigScreen {
 			.build();
 	}
 
-	private static List<AbstractConfigListEntry> nvEntries(ConfigEntryBuilder entryBuilder, VisionSettings settings) {
+	private static List<AbstractConfigListEntry> nvEntries(ConfigEntryBuilder entryBuilder, VisionSettings settings,
+			List<Runnable> afterSave) {
 		List<AbstractConfigListEntry> entries = new ArrayList<>();
 
-		entries.add(entryBuilder.startEnumSelector(text(PREFIX + "option.nv_preset"), VisionSettings.Preset.class, VisionSettings.Preset.of(settings))
+		VisionSettings.Preset shown = VisionSettings.Preset.of(settings);
+		VisionSettings.Preset[] chosen = { shown };
+
+		entries.add(entryBuilder.startEnumSelector(text(PREFIX + "option.nv_preset"), VisionSettings.Preset.class, shown)
 			.setDefaultValue(VisionSettings.Preset.of(new VisionSettings()))
 			.setEnumNameProvider(preset -> text(PREFIX + "preset." + presetKey(preset.name())))
 			.setTooltipSupplier(preset -> Optional.of(new Component[] {
 				text(PREFIX + "tooltip.preset." + presetKey(preset.name()))
 			}))
-			.setSaveConsumer(preset -> preset.applyTo(settings))
+			.setSaveConsumer(preset -> chosen[0] = preset)
 			.build());
+
+		// Cloth saves the Advanced sliders after this entry, so applying the preset in its own
+		// save consumer would be overwritten by whatever the sliders were still showing.
+		afterSave.add(() -> {
+			if (chosen[0] != shown)
+				chosen[0].applyTo(settings);
+		});
 
 		entries.add(entryBuilder.startSubCategory(text(PREFIX + "option.advanced"), curveEntries(entryBuilder, settings))
 			.setTooltip(
