@@ -20,6 +20,10 @@
     "text.cat_vision.config.option.nv_lit_light": "Ois hö gütends Lichtlevel",
     "text.cat_vision.config.option.nv_shape": "Form vo da Kurvn",
     "text.cat_vision.config.option.nv_speed": "Übagaungsgschwindigkeit",
+    "text.cat_vision.config.option.dimension_override": "Eigane Eistöllungen do",
+    "text.cat_vision.config.dimension.overworld": "Obawöt",
+    "text.cat_vision.config.dimension.the_nether": "Nether",
+    "text.cat_vision.config.dimension.the_end": "Des End",
 
     "text.cat_vision.config.tooltip.blindness_disclaimer.1": "[!] Immunität gegn Blindheit funktioniat nua in Oanzlspüla",
     "text.cat_vision.config.tooltip.blindness_disclaimer.2": "und ned in LAN-Wöltn oder Measpüla, weil die Untadrückung",
@@ -37,5 +41,8 @@
     "text.cat_vision.config.tooltip.nv_dark.3": "Da söbe Wert wia obn haaßt, de Kurvn mocht nix.",
     "text.cat_vision.config.tooltip.nv_shape.1": "Unta 1.0 wiad frua eiblendt, üba 1.0 woat's,",
     "text.cat_vision.config.tooltip.nv_shape.2": "bis wiaklich finsta is. 1.0 is a grode Linie.",
-    "text.cat_vision.config.tooltip.nv_speed": "Wia schnö übablendt wiad. 1.0 is sofuat."
+    "text.cat_vision.config.tooltip.nv_speed": "Wia schnö übablendt wiad. 1.0 is sofuat.",
+    "text.cat_vision.config.tooltip.dimension_override.1": "Ersetzt de Eistöllungen obn, solangst in dera",
+    "text.cat_vision.config.tooltip.dimension_override.2": "Dimension bist. Nochtsicht folgt beim Einegehn daun",
+    "text.cat_vision.config.tooltip.dimension_override.3": "dem Abschnitt und ignoriat \"Nochtsicht merkn\"."
 }

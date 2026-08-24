@@ -4,6 +4,8 @@ import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
+import net.marios271.cat_vision.handler.VisionHandler;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 //? < 1.19 {
@@ -12,8 +14,11 @@ import net.minecraft.network.chat.TranslatableComponent;
 *///?}
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.function.DoubleConsumer;
 import java.util.function.Function;
 
@@ -33,10 +38,7 @@ public class ConfigScreen {
 			.setSaveConsumer(v -> config.remember_nv = v)
 			.build());
 
-		category.addEntry(entryBuilder.startBooleanToggle(text(PREFIX + "option.auto_nv"), config.auto_nv)
-			.setDefaultValue(true)
-			.setSaveConsumer(v -> config.auto_nv = v)
-			.build());
+		category.addEntry(autoNvEntry(entryBuilder, config));
 
 		category.addEntry(entryBuilder.startBooleanToggle(text(PREFIX + "option.blindness_immunity"), config.blindness_immunity)
 			.setDefaultValue(true)
@@ -64,9 +66,79 @@ public class ConfigScreen {
 		for (AbstractConfigListEntry entry : curveEntries(entryBuilder, config))
 			category.addEntry(entry);
 
-		builder.setSavingRunnable(config::save);
+		List<Runnable> afterSave = new ArrayList<>();
+		addDimensionEntries(category, entryBuilder, config, afterSave);
 
+		builder.setSavingRunnable(() -> {
+			for (Runnable task : afterSave)
+				task.run();
+			config.save();
+		});
 		return builder.build();
+	}
+
+	private static void addDimensionEntries(ConfigCategory category, ConfigEntryBuilder entryBuilder,
+			ConfigData config, List<Runnable> afterSave) {
+		Set<String> dimensions = new LinkedHashSet<>(Arrays.asList(
+			"minecraft:overworld",
+			"minecraft:the_nether",
+			"minecraft:the_end"
+		));
+		dimensions.addAll(config.dimension_overrides.keySet());
+
+		String current = VisionHandler.dimensionOf(Minecraft.getInstance());
+		if (current != null)
+			dimensions.add(current);
+
+		for (String dimension : dimensions) {
+			VisionSettings existing = config.dimension_overrides.get(dimension);
+			VisionSettings settings = existing != null ? existing : config.copy();
+			VisionSettings asShown = settings.copy();
+
+			if (existing == null)
+				afterSave.add(() -> {
+					if (config.dimension_overrides.get(dimension) == settings && settings.sameAs(asShown))
+						settings.copyFrom(config);
+				});
+
+			List<AbstractConfigListEntry> entries = new ArrayList<>();
+			entries.add(entryBuilder.startBooleanToggle(text(PREFIX + "option.dimension_override"), existing != null)
+				.setDefaultValue(false)
+				.setTooltip(
+					text(PREFIX + "tooltip.dimension_override.1"),
+					text(PREFIX + "tooltip.dimension_override.2"),
+					text(PREFIX + "tooltip.dimension_override.3")
+				)
+				.setSaveConsumer(v -> {
+					if (v) config.dimension_overrides.put(dimension, settings);
+					else config.dimension_overrides.remove(dimension);
+				})
+				.build());
+			entries.add(autoNvEntry(entryBuilder, settings));
+			entries.addAll(curveEntries(entryBuilder, settings));
+
+			category.addEntry(entryBuilder.startSubCategory(dimensionName(dimension), entries).build());
+		}
+	}
+
+	private static Component dimensionName(String dimension) {
+		switch (dimension) {
+			case "minecraft:overworld":
+				return text(PREFIX + "dimension.overworld");
+			case "minecraft:the_nether":
+				return text(PREFIX + "dimension.the_nether");
+			case "minecraft:the_end":
+				return text(PREFIX + "dimension.the_end");
+			default:
+				return literal(dimension);
+		}
+	}
+
+	private static AbstractConfigListEntry autoNvEntry(ConfigEntryBuilder entryBuilder, VisionSettings settings) {
+		return entryBuilder.startBooleanToggle(text(PREFIX + "option.auto_nv"), settings.auto_nv)
+			.setDefaultValue(true)
+			.setSaveConsumer(v -> settings.auto_nv = v)
+			.build();
 	}
 
 	private static List<AbstractConfigListEntry> curveEntries(ConfigEntryBuilder entryBuilder, VisionSettings settings) {

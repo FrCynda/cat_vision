@@ -20,6 +20,10 @@
     "text.cat_vision.config.option.nv_lit_light": "Als hell geltendes Lichtlevel",
     "text.cat_vision.config.option.nv_shape": "Form der Kurve",
     "text.cat_vision.config.option.nv_speed": "Übergangsgeschwindigkeit",
+    "text.cat_vision.config.option.dimension_override": "Eigene Einstellungen hier",
+    "text.cat_vision.config.dimension.overworld": "Oberwelt",
+    "text.cat_vision.config.dimension.the_nether": "Nether",
+    "text.cat_vision.config.dimension.the_end": "Das Ende",
 
     "text.cat_vision.config.tooltip.blindness_disclaimer.1": "[!] Immunität gegen Blindheit funktioniert nur in Einzelspieler",
     "text.cat_vision.config.tooltip.blindness_disclaimer.2": "und nicht in LAN-Welten oder Mehrspieler, da die Unterdrückung",
@@ -37,5 +41,8 @@
     "text.cat_vision.config.tooltip.nv_dark.3": "Derselbe Wert wie oben heißt, die Kurve macht nichts.",
     "text.cat_vision.config.tooltip.nv_shape.1": "Unter 1.0 wird früh eingeblendet, über 1.0 wartet es,",
     "text.cat_vision.config.tooltip.nv_shape.2": "bis es wirklich dunkel ist. 1.0 ist eine Gerade.",
-    "text.cat_vision.config.tooltip.nv_speed": "Wie schnell übergeblendet wird. 1.0 ist sofort."
+    "text.cat_vision.config.tooltip.nv_speed": "Wie schnell übergeblendet wird. 1.0 ist sofort.",
+    "text.cat_vision.config.tooltip.dimension_override.1": "Ersetzt die Einstellungen oben, solange du in dieser",
+    "text.cat_vision.config.tooltip.dimension_override.2": "Dimension bist. Nachtsicht folgt beim Betreten dann",
+    "text.cat_vision.config.tooltip.dimension_override.3": "diesem Abschnitt und ignoriert \"Nachtsicht merken\"."
 }
