@@ -37,5 +37,20 @@
     "text.cat_vision.config.tooltip.nv_dark.3": "The same value as above means the curve does nothing.",
     "text.cat_vision.config.tooltip.nv_shape.1": "Below 1.0 fades in early, above 1.0 waits until it",
     "text.cat_vision.config.tooltip.nv_shape.2": "really is dark. 1.0 is a straight line.",
-    "text.cat_vision.config.tooltip.nv_speed": "How fast it fades between the two. 1.0 is instant."
+    "text.cat_vision.config.tooltip.nv_speed": "How fast it fades between the two. 1.0 is instant.",
+
+    "text.cat_vision.config.option.nv_preset": "Night Vision",
+    "text.cat_vision.config.preset.slow": "Slow adaptation",
+    "text.cat_vision.config.preset.adaptive": "Adaptive",
+    "text.cat_vision.config.preset.always": "Always",
+    "text.cat_vision.config.preset.never": "Never",
+    "text.cat_vision.config.preset.custom": "Custom",
+    "text.cat_vision.config.tooltip.preset.slow": "Recommended. Fades in as it gets darker, slowly enough that you barely notice it happening.",
+    "text.cat_vision.config.tooltip.preset.adaptive": "The same fade, fast enough that you see it happen.",
+    "text.cat_vision.config.tooltip.preset.always": "Full night vision whenever it is switched on, exactly as the mod has always worked.",
+    "text.cat_vision.config.tooltip.preset.never": "Night vision never shows, even while it is switched on. Meant for a single dimension.",
+    "text.cat_vision.config.tooltip.preset.custom": "Your own values from the advanced settings below.",
+    "text.cat_vision.config.option.advanced": "Advanced",
+    "text.cat_vision.config.tooltip.advanced.1": "The sliders the preset above stands in for.",
+    "text.cat_vision.config.tooltip.advanced.2": "Moving any of them turns the preset into Custom."
 }

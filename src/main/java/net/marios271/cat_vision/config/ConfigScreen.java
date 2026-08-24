@@ -14,6 +14,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.function.DoubleConsumer;
 import java.util.function.Function;
 
@@ -61,12 +62,54 @@ public class ConfigScreen {
 			.build());
 		//?}
 
-		for (AbstractConfigListEntry entry : curveEntries(entryBuilder, config))
+		List<Runnable> afterSave = new ArrayList<>();
+		for (AbstractConfigListEntry entry : nvEntries(entryBuilder, config, afterSave))
 			category.addEntry(entry);
 
-		builder.setSavingRunnable(config::save);
+		builder.setSavingRunnable(() -> {
+			for (Runnable task : afterSave)
+				task.run();
+			config.save();
+		});
 
 		return builder.build();
+	}
+
+	private static List<AbstractConfigListEntry> nvEntries(ConfigEntryBuilder entryBuilder, VisionSettings settings,
+			List<Runnable> afterSave) {
+		List<AbstractConfigListEntry> entries = new ArrayList<>();
+
+		VisionSettings.Preset shown = VisionSettings.Preset.of(settings);
+		VisionSettings.Preset[] chosen = { shown };
+
+		entries.add(entryBuilder.startEnumSelector(text(PREFIX + "option.nv_preset"), VisionSettings.Preset.class, shown)
+			.setDefaultValue(VisionSettings.Preset.of(new VisionSettings()))
+			.setEnumNameProvider(preset -> text(PREFIX + "preset." + presetKey(preset.name())))
+			.setTooltipSupplier(preset -> Optional.of(new Component[] {
+				text(PREFIX + "tooltip.preset." + presetKey(preset.name()))
+			}))
+			.setSaveConsumer(preset -> chosen[0] = preset)
+			.build());
+
+		// Cloth saves the Advanced sliders after this entry, so applying the preset in its own
+		// save consumer would be overwritten by whatever the sliders were still showing.
+		afterSave.add(() -> {
+			if (chosen[0] != shown)
+				chosen[0].applyTo(settings);
+		});
+
+		entries.add(entryBuilder.startSubCategory(text(PREFIX + "option.advanced"), curveEntries(entryBuilder, settings))
+			.setTooltip(
+				text(PREFIX + "tooltip.advanced.1"),
+				text(PREFIX + "tooltip.advanced.2")
+			)
+			.build());
+
+		return entries;
+	}
+
+	private static String presetKey(String name) {
+		return name.toLowerCase(Locale.ROOT);
 	}
 
 	private static List<AbstractConfigListEntry> curveEntries(ConfigEntryBuilder entryBuilder, VisionSettings settings) {

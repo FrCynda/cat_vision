@@ -37,5 +37,20 @@
     "text.cat_vision.config.tooltip.nv_dark.3": "Derselbe Wert wie oben heißt, die Kurve macht nichts.",
     "text.cat_vision.config.tooltip.nv_shape.1": "Unter 1.0 wird früh eingeblendet, über 1.0 wartet es,",
     "text.cat_vision.config.tooltip.nv_shape.2": "bis es wirklich dunkel ist. 1.0 ist eine Gerade.",
-    "text.cat_vision.config.tooltip.nv_speed": "Wie schnell übergeblendet wird. 1.0 ist sofort."
+    "text.cat_vision.config.tooltip.nv_speed": "Wie schnell übergeblendet wird. 1.0 ist sofort.",
+
+    "text.cat_vision.config.option.nv_preset": "Nachtsicht",
+    "text.cat_vision.config.preset.slow": "Langsame Anpassung",
+    "text.cat_vision.config.preset.adaptive": "Anpassend",
+    "text.cat_vision.config.preset.always": "Immer",
+    "text.cat_vision.config.preset.never": "Nie",
+    "text.cat_vision.config.preset.custom": "Benutzerdefiniert",
+    "text.cat_vision.config.tooltip.preset.slow": "Empfohlen. Blendet sich ein, je dunkler es wird, so langsam, dass man es kaum bemerkt.",
+    "text.cat_vision.config.tooltip.preset.adaptive": "Derselbe Übergang, schnell genug, um ihn zu sehen.",
+    "text.cat_vision.config.tooltip.preset.always": "Volle Nachtsicht, sobald sie an ist, genau wie der Mod schon immer funktioniert hat.",
+    "text.cat_vision.config.tooltip.preset.never": "Nachtsicht erscheint nie, auch wenn sie an ist. Gedacht für einzelne Dimensionen.",
+    "text.cat_vision.config.tooltip.preset.custom": "Deine eigenen Werte aus den erweiterten Einstellungen unten.",
+    "text.cat_vision.config.option.advanced": "Erweitert",
+    "text.cat_vision.config.tooltip.advanced.1": "Die Regler, für die die Voreinstellung oben steht.",
+    "text.cat_vision.config.tooltip.advanced.2": "Wer einen davon bewegt, macht aus der Voreinstellung \"Benutzerdefiniert\"."
 }

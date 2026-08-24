@@ -37,5 +37,20 @@
     "text.cat_vision.config.tooltip.nv_dark.3": "Da söbe Wert wia obn haaßt, de Kurvn mocht nix.",
     "text.cat_vision.config.tooltip.nv_shape.1": "Unta 1.0 wiad frua eiblendt, üba 1.0 woat's,",
     "text.cat_vision.config.tooltip.nv_shape.2": "bis wiaklich finsta is. 1.0 is a grode Linie.",
-    "text.cat_vision.config.tooltip.nv_speed": "Wia schnö übablendt wiad. 1.0 is sofuat."
+    "text.cat_vision.config.tooltip.nv_speed": "Wia schnö übablendt wiad. 1.0 is sofuat.",
+
+    "text.cat_vision.config.option.nv_preset": "Nochtsicht",
+    "text.cat_vision.config.preset.slow": "Longsame Aupassung",
+    "text.cat_vision.config.preset.adaptive": "Aupassend",
+    "text.cat_vision.config.preset.always": "Imma",
+    "text.cat_vision.config.preset.never": "Nia",
+    "text.cat_vision.config.preset.custom": "Söwa eigstöllt",
+    "text.cat_vision.config.tooltip.preset.slow": "Empfohln. Blendt si ei, je dunkla's wiad, so longsom, dass ma's kaum merkt.",
+    "text.cat_vision.config.tooltip.preset.adaptive": "Da söbe Übagaung, schnö gnua, dass ma'n siacht.",
+    "text.cat_vision.config.tooltip.preset.always": "Volle Nochtsicht, sobold s au is, genau so wia da Mod imma scho funktioniat hot.",
+    "text.cat_vision.config.tooltip.preset.never": "Nochtsicht kummt nia, aa waunn s au is. Gedocht fia oanzlne Dimensionen.",
+    "text.cat_vision.config.tooltip.preset.custom": "Deine eignan Weat aus de erweiterten Eistöllungen do unt.",
+    "text.cat_vision.config.option.advanced": "Erweitert",
+    "text.cat_vision.config.tooltip.advanced.1": "De Regla, fia de wo de Voreistöllung do obn steht.",
+    "text.cat_vision.config.tooltip.advanced.2": "Wannst oan dovo bewegst, wiad aus da Voreistöllung \"Söwa eigstöllt\"."
 }
