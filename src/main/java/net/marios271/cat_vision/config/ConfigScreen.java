@@ -64,7 +64,21 @@ public class ConfigScreen {
 		for (AbstractConfigListEntry entry : curveEntries(entryBuilder, config))
 			category.addEntry(entry);
 
-		builder.setSavingRunnable(config::save);
+		boolean[] reset = new boolean[1];
+		category.addEntry(entryBuilder.startBooleanToggle(text(PREFIX + "option.reset"), false)
+			.setDefaultValue(false)
+			.setTooltip(
+				text(PREFIX + "tooltip.reset.1"),
+				text(PREFIX + "tooltip.reset.2")
+			)
+			.setSaveConsumer(v -> reset[0] = v)
+			.build());
+
+		builder.setSavingRunnable(() -> {
+			if (reset[0])
+				config.resetToDefaults();
+			config.save();
+		});
 
 		return builder.build();
 	}

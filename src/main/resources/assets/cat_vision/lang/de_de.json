@@ -37,5 +37,9 @@
     "text.cat_vision.config.tooltip.nv_dark.3": "Derselbe Wert wie oben heißt, die Kurve macht nichts.",
     "text.cat_vision.config.tooltip.nv_shape.1": "Unter 1.0 wird früh eingeblendet, über 1.0 wartet es,",
     "text.cat_vision.config.tooltip.nv_shape.2": "bis es wirklich dunkel ist. 1.0 ist eine Gerade.",
-    "text.cat_vision.config.tooltip.nv_speed": "Wie schnell übergeblendet wird. 1.0 ist sofort."
+    "text.cat_vision.config.tooltip.nv_speed": "Wie schnell übergeblendet wird. 1.0 ist sofort.",
+
+    "text.cat_vision.config.option.reset": "Alle Einstellungen zurücksetzen",
+    "text.cat_vision.config.tooltip.reset.1": "Setzt jede Einstellung auf ihren Standard zurück.",
+    "text.cat_vision.config.tooltip.reset.2": "Wird beim Speichern angewendet - Haken entfernen, um es zu lassen."
 }

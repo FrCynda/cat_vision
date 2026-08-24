@@ -37,5 +37,9 @@
     "text.cat_vision.config.tooltip.nv_dark.3": "The same value as above means the curve does nothing.",
     "text.cat_vision.config.tooltip.nv_shape.1": "Below 1.0 fades in early, above 1.0 waits until it",
     "text.cat_vision.config.tooltip.nv_shape.2": "really is dark. 1.0 is a straight line.",
-    "text.cat_vision.config.tooltip.nv_speed": "How fast it fades between the two. 1.0 is instant."
+    "text.cat_vision.config.tooltip.nv_speed": "How fast it fades between the two. 1.0 is instant.",
+
+    "text.cat_vision.config.option.reset": "Reset all settings",
+    "text.cat_vision.config.tooltip.reset.1": "Puts every setting back to its default.",
+    "text.cat_vision.config.tooltip.reset.2": "Applied on save - untick to change your mind."
 }

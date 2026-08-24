@@ -18,6 +18,15 @@ public class VisionSettings {
 		return clamp(nv_lit + (nv_dark - nv_lit) * Math.pow(darkness, shape), 0.0, 1.0);
 	}
 
+	public void copyFrom(VisionSettings other) {
+		nv_curve = other.nv_curve;
+		nv_lit = other.nv_lit;
+		nv_dark = other.nv_dark;
+		nv_shape = other.nv_shape;
+		nv_lit_light = other.nv_lit_light;
+		nv_speed = other.nv_speed;
+	}
+
 	public static double clamp(double value, double min, double max) {
 		return value < min ? min : Math.min(value, max);
 	}
